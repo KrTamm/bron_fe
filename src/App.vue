@@ -1,51 +1,30 @@
 <template>
   <v-app>
     <v-app-bar
-      app
-      color="primary"
-      dark
+        app
+        color="yellow"
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+      <div style="margin: auto">
+        <router-link to="/bron" style="margin-right: 10px">Broneerimine</router-link>
+        <span>     </span>
+        <router-link to="/addDoc">Lisa Arst</router-link>
       </div>
-
-      <v-spacer></v-spacer>
-
     </v-app-bar>
 
     <v-main>
-      <div id="nav">
-        <router-link to="/bron">Bron</router-link> |
-        <router-link to="/addDoc">Add Doc</router-link>
-      </div>
-      <router-view/>
+      <v-container>
+        <router-view/>
+      </v-container>
     </v-main>
   </v-app>
 </template>
+
 
 <script>
 
 export default {
   name: 'App',
 
-  data: () => ({
-    //
-  }),
+  data: () => ({}),
 };
 </script>
