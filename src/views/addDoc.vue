@@ -1,75 +1,57 @@
 <template>
-  <div id="doctorentryform" style="width: 500px; margin-left: auto; margin-right: auto">
+  <div id="doctorentryform" style="width: 400px; margin-left: auto; margin-right: auto" align="center">
+    <h1>Add Doctor to database</h1>
     <br>
-    <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-    >
-      <v-text-field
-          v-model="eesnimi"
-          :counter="15"
-          :rules="nameRules"
-          label="Eesnimi"
-          required
-      ></v-text-field>
+    <v-text-field
+        v-model="newDoc.docFirstName"
+        :rules="nameRules"
+        label="Eesnimi"
+        required
+    ></v-text-field>
 
-      <v-text-field
-          v-model="perenimi"
-          :counter="15"
-          :rules="nameRules"
-          label="Perenimi"
-          required
-      ></v-text-field>
+    <v-text-field
+        v-model="newDoc.docLastName"
+        :rules="nameRules"
+        label="Perenimi"
+        required
+    ></v-text-field>
 
-      <v-text-field
-          v-model="amet"
-          :counter="30"
-          :rules="nameRules"
-          label="Amet"
-          required
-      ></v-text-field>
+    <v-text-field
+        v-model="newDoc.docProfession"
+        :rules="nameRules"
+        label="Amet"
+        required
+    ></v-text-field>
 
-      <v-text-field
-          v-model="asukoht"
-          :counter="30"
-          :rules="nameRules"
-          label="Asukoht"
-          required
-      ></v-text-field>
+    <v-text-field
+        v-model="newDoc.docArea"
+        :rules="nameRules"
+        label="Asukoht"
+        required
+    ></v-text-field>
 
-      <v-text-field
-          v-model="litsents"
-          :counter="10"
-          :rules="nameRules"
-          label="Litsents"
-          required
-      ></v-text-field>
+    <v-text-field
+        v-model="newDoc.docLicense"
+        :rules="nameRules"
+        label="Litsents"
+        required
+    ></v-text-field>
 
-      <v-btn
-          :disabled="!valid"
-          color="success"
-          class="mr-4"
-          @click="validate"
-      >
-        Validate
-      </v-btn>
+    <v-btn
+        block
+        color="green"
+        elevation="2"
+        @click="addDoc"
+    >Sumbit
+    </v-btn>
+    <br>
+    <v-alert
 
-      <v-btn
-          color="error"
-          class="mr-4"
-          @click="reset"
-      >
-        Reset Form
-      </v-btn>
-
-      <v-btn
-          color="warning"
-          @click="resetValidation"
-      >
-        Reset Validation
-      </v-btn>
-    </v-form>
+        border="left"
+        dense
+        dismissible
+        type="success"
+    >Doctor added!</v-alert>
   </div>
 </template>
 
@@ -77,29 +59,26 @@
 <script>
 export default {
   data: () => ({
-    valid: true,
-    name: '',
+    docFirstName: '',
+    docLastName: '',
+    docProfession: '',
+    docArea: '',
+    docLicense: '',
+    newDoc: {},
+    doctorAdd: {},
     nameRules: [
-      v => !!v || 'Name is required',
-      v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-    ],
-    email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      v => !!v || 'Name is required'
     ],
   }),
 
   methods: {
-    validate() {
-      this.$refs.form.validate()
-    },
-    reset() {
-      this.$refs.form.reset()
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation()
-    },
+    addDoc: function () {
+      this.$http.post('/api/project/createDoc', this.newDoc)
+          .then(response => {
+            this.doctorAdd = response.data
+
+          })
+    }
   },
 }
 </script>

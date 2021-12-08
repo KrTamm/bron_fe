@@ -2,29 +2,42 @@
   <v-app>
     <v-app-bar
         app
-        color="yellow"
+        color="gray"
+
+        dark
     >
-      <div style="margin: auto">
-        <router-link to="/bron" style="margin-right: 10px">Broneerimine</router-link>
-        <span>     </span>
-        <router-link to="/addDoc">Lisa Arst</router-link>
+
+      <div id="nav">
+        <router-link to="/bron">Bron</router-link> |
+        <router-link to="/addDoc">Add Doc</router-link>
       </div>
+
+      <v-spacer></v-spacer>
+
     </v-app-bar>
 
     <v-main>
-      <v-container>
-        <router-view/>
-      </v-container>
+
+      <router-view/>
     </v-main>
   </v-app>
 </template>
-
 
 <script>
 
 export default {
   name: 'App',
 
-  data: () => ({}),
+  data: () => ({
+    //
+  }),
 };
 </script>
+
+<style>
+
+#nav {
+  color: white;
+  text-align: center;
+}
+</style>
