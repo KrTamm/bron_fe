@@ -1,57 +1,62 @@
 <template>
-  <div id="doctorentryform" style="width: 400px; margin-left: auto; margin-right: auto" align="center">
-    <h1>Add Doctor to database</h1>
+  <div>
     <br>
-    <v-text-field
-        v-model="newDoc.docFirstName"
-        :rules="nameRules"
-        label="Eesnimi"
-        required
-    ></v-text-field>
+    <h1 style="text-align: center">LISA UUS ARST ANDMEBAASI</h1>
+    <div id="doctorentryform" style="width: 400px; margin-left: auto; margin-right: auto">
+      <br>
+      <br>
+      <v-text-field
+          v-model="newDoc.docFirstName"
+          :rules="nameRules"
+          label="Eesnimi"
+          required
+      ></v-text-field>
 
-    <v-text-field
-        v-model="newDoc.docLastName"
-        :rules="nameRules"
-        label="Perenimi"
-        required
-    ></v-text-field>
+      <v-text-field
+          v-model="newDoc.docLastName"
+          :rules="nameRules"
+          label="Perenimi"
+          required
+      ></v-text-field>
 
-    <v-text-field
-        v-model="newDoc.docProfession"
-        :rules="nameRules"
-        label="Amet"
-        required
-    ></v-text-field>
+      <v-text-field
+          v-model="newDoc.docProfession"
+          :rules="nameRules"
+          label="Amet"
+          required
+      ></v-text-field>
 
-    <v-text-field
-        v-model="newDoc.docArea"
-        :rules="nameRules"
-        label="Asukoht"
-        required
-    ></v-text-field>
+      <v-text-field
+          v-model="newDoc.docArea"
+          :rules="nameRules"
+          label="Asukoht"
+          required
+      ></v-text-field>
 
-    <v-text-field
-        v-model="newDoc.docLicense"
-        :rules="nameRules"
-        label="Litsents"
-        required
-    ></v-text-field>
+      <v-text-field
+          v-model="newDoc.docLicense"
+          :rules="nameRules"
+          label="Litsents"
+          required
+      ></v-text-field>
 
-    <v-btn
-        block
-        color="green"
-        elevation="2"
-        @click="addDoc"
-    >Sumbit
-    </v-btn>
-    <br>
-    <v-alert
+      <v-btn
+          block
+          color="green"
+          elevation="2"
+          @click="addDoc"
+      >Sumbit
+      </v-btn>
+      <br>
+      <v-alert
 
-        border="left"
-        dense
-        dismissible
-        type="success"
-    >Doctor added!</v-alert>
+          border="left"
+          dense
+          dismissible
+          type="success"
+      >Doctor added!
+      </v-alert>
+    </div>
   </div>
 </template>
 

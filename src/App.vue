@@ -2,17 +2,14 @@
   <v-app>
     <v-app-bar
         app
-        color="gray"
-
-        dark
+        color="lightgray"
     >
 
-      <div id="nav">
-        <router-link to="/bron">Bron</router-link> |
-        <router-link to="/addDoc">Add Doc</router-link>
+      <div id="nav" style="margin-right: auto;margin-left: auto">
+        <router-link to="/bron">Broneeringud</router-link> |
+        <router-link to="/addDoc">Lisa Arst</router-link>
       </div>
 
-      <v-spacer></v-spacer>
 
     </v-app-bar>
 
@@ -35,6 +32,10 @@ export default {
 </script>
 
 <style>
+* {
+  font-family: Verdana;
+  font-weight: lighter;
+}
 
 #nav {
   color: white;

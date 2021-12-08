@@ -1,8 +1,7 @@
 <template>
   <div class="broneerimine">
-    <h1 style="text-align: center">Vali Arst ja Aeg</h1>
-    <br><br>
-    <h1>Vali kuupäev:</h1>
+    <br>
+    <h1 style="text-align: center">VALI KUUPÄEV</h1>
     <br>
     <v-container style="text-align: center">
       <v-row>
@@ -35,9 +34,11 @@
                 v-model="date"
                 no-title
                 @input="menu1 = false"
+                @click:date="getInfoForDocCard"
             ></v-date-picker>
           </v-menu>
-          <strong>{{ date }}</strong>
+          <strong>{{ formatDate(date) }}</strong>
+          <br>
         </v-col>
 
       </v-row>
@@ -75,7 +76,7 @@
             <v-divider class="mx-4"></v-divider>
             <br>
             <v-card-text>
-              <v-row style="font-size: 1.4em; font-weight: 600; padding-bottom: 5px; padding-top: 8px">Vabad Ajad
+              <v-row style="font-size: 1.4em; font-weight: 600; padding-bottom: 5px; padding-top: 5px">Vabad Ajad
               </v-row>
               <br>
               <v-chip-group
