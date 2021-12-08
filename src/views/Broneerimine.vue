@@ -1,6 +1,47 @@
 <template>
   <div class="broneerimine">
     <h1 style="text-align: center">Vali Arst ja Aeg</h1>
+    <br><br>
+    <h1>Vali kuupäev:</h1>
+    <br>
+    <v-container style="text-align: center">
+      <v-row>
+        <v-col
+            cols="12"
+            lg="12"
+        >
+          <v-menu
+              ref="menu1"
+              v-model="menu1"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              max-width="290px"
+              min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                  v-model="dateFormatted"
+                  label="Date"
+                  hint="MM/DD/YYYY format"
+                  persistent-hint
+                  prepend-icon="mdi-calendar"
+                  v-bind="attrs"
+                  @blur="date = parseDate(dateFormatted)"
+                  v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker
+                v-model="date"
+                no-title
+                @input="menu1 = false"
+            ></v-date-picker>
+          </v-menu>
+          <strong>{{ date }}</strong>
+        </v-col>
+
+      </v-row>
+    </v-container>
     <v-container class="grey lighten-5">
       <v-row class="justify-center">
         <v-col
@@ -38,7 +79,7 @@
               </v-row>
               <br>
               <v-chip-group
-                  v-model="selection"
+                  v-model="row.selection"
                   active-class="deep-purple accent-4 white--text"
                   column
               >
@@ -63,13 +104,29 @@
 
 <script>
 export default {
-  data: () => ({
+  data: vm => ({
+    date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+    dateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
+    menu1: false,
+    menu2: false,
     loading: false,
     selection: 0,
     allDoctors: {},
     allBookings: {},
-    InfoForDocCard: {}
+    InfoForDocCard: {},
+    InfoForDocDate: {}
   }),
+  computed: {
+    computedDateFormatted() {
+      return this.formatDate(this.date)
+    },
+  },
+
+  watch: {
+    date(val) {
+      this.dateFormatted = this.formatDate(this.date)
+    },
+  },
 
   methods: {
     reserve() {
@@ -90,11 +147,24 @@ export default {
           })
     },
     getInfoForDocCard() {
-      this.$http.get('api/project/getInfoForDocCard')
+      this.$http.get('api/project/getInfoForDocDate/' + this.date)
           .then(response => {
             this.InfoForDocCard = response.data
           })
-    }
+    },
+    formatDate(date) {
+      if (!date) return null
+
+      const [year, month, day] = date.split('-')
+      return `${month}/${day}/${year}`
+    },
+    parseDate(date) {
+      if (!date) return null
+
+      const [month, day, year] = date.split('/')
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+    },
+
   },
   mounted() {
     this.getInfoForDocCard();
