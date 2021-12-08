@@ -4,7 +4,7 @@
     <v-container class="grey lighten-5">
       <v-row class="justify-center">
         <v-col
-            v-for="row in allDoctors"
+            v-for="row in InfoForDocCard"
             :key="row"
             cols="auto"
 
@@ -23,12 +23,12 @@
             <br>
             <v-card-text>
               <v-row style="font-size: 1.4em; font-weight: 600; padding-bottom: 5px; padding-top: 8px">
-                {{ row.doc_first_name }}
-                {{ row.doc_last_name }}
+                {{ row.docFirstName }}
+                {{ row.docLastName }}
               </v-row>
-              <v-row>{{ row.doc_profession }}</v-row>
-              <v-row>Litsentsi nr: {{ row.doc_license }}</v-row>
-              <v-row>Aadress: {{ row.doc_area }}</v-row>
+              <v-row>{{ row.docProfession }}</v-row>
+              <v-row>Litsentsi nr: {{ row.docLicense }}</v-row>
+              <v-row>Aadress: {{ row.docArea }}</v-row>
             </v-card-text>
             <br>
             <v-divider class="mx-4"></v-divider>
@@ -42,10 +42,7 @@
                   active-class="deep-purple accent-4 white--text"
                   column
               >
-                <v-chip>10:00PM</v-chip>
-                <v-chip>10:30PM</v-chip>
-                <v-chip>11:00PM</v-chip>
-                <v-chip>11:30PM</v-chip>
+                <v-chip v-for="rida in row.bookingTime">{{ rida }}</v-chip>
               </v-chip-group>
             </v-card-text>
             <v-card-actions style="padding: 0px">
@@ -70,23 +67,37 @@ export default {
     loading: false,
     selection: 0,
     allDoctors: {},
+    allBookings: {},
+    InfoForDocCard: {}
   }),
 
   methods: {
     reserve() {
       this.loading = true
-
       setTimeout(() => (this.loading = false), 2000)
     },
+
     getAllDoctors() {
       this.$http.get('api/project/getDocList')
           .then(response => {
             this.allDoctors = response.data
           })
+    },
+    getAllBookings() {
+      this.$http.get('api/project/getBookingsList')
+          .then(response => {
+            this.allBookings = response.data
+          })
+    },
+    getInfoForDocCard() {
+      this.$http.get('api/project/getInfoForDocCard')
+          .then(response => {
+            this.InfoForDocCard = response.data
+          })
     }
   },
   mounted() {
-    this.getAllDoctors();
+    this.getInfoForDocCard();
   }
 }
 </script>
