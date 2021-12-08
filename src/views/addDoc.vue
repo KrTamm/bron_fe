@@ -1,39 +1,50 @@
-
-  <template>
+<template>
+  <div id="doctorentryform" style="width: 500px; margin-left: auto; margin-right: auto">
+    <br>
     <v-form
         ref="form"
         v-model="valid"
         lazy-validation
     >
       <v-text-field
-          v-model="name"
-          :counter="10"
+          v-model="eesnimi"
+          :counter="15"
           :rules="nameRules"
-          label="Name"
+          label="Eesnimi"
           required
       ></v-text-field>
 
       <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          label="E-mail"
+          v-model="perenimi"
+          :counter="15"
+          :rules="nameRules"
+          label="Perenimi"
           required
       ></v-text-field>
 
-      <v-select
-          v-model="select"
-          :items="items"
-          :rules="[v => !!v || 'Item is required']"
-          label="Item"
+      <v-text-field
+          v-model="amet"
+          :counter="30"
+          :rules="nameRules"
+          label="Amet"
           required
-      ></v-select>
+      ></v-text-field>
 
-      <v-checkbox
-          v-model="checkbox"
-          :rules="[v => !!v || 'You must agree to continue!']"
-          label="Do you agree?"
+      <v-text-field
+          v-model="asukoht"
+          :counter="30"
+          :rules="nameRules"
+          label="Asukoht"
           required
-      ></v-checkbox>
+      ></v-text-field>
+
+      <v-text-field
+          v-model="litsents"
+          :counter="10"
+          :rules="nameRules"
+          label="Litsents"
+          required
+      ></v-text-field>
 
       <v-btn
           :disabled="!valid"
@@ -59,7 +70,8 @@
         Reset Validation
       </v-btn>
     </v-form>
-  </template>
+  </div>
+</template>
 
 
 <script>
@@ -76,24 +88,16 @@ export default {
       v => !!v || 'E-mail is required',
       v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
     ],
-    select: null,
-    items: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-    ],
-    checkbox: false,
   }),
 
   methods: {
-    validate () {
+    validate() {
       this.$refs.form.validate()
     },
-    reset () {
+    reset() {
       this.$refs.form.reset()
     },
-    resetValidation () {
+    resetValidation() {
       this.$refs.form.resetValidation()
     },
   },
