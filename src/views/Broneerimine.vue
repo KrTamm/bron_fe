@@ -1,53 +1,53 @@
 <template>
   <div class="broneerimine">
     <br>
-    <h1 style="text-align: center">VALI KUUPÄEV</h1>
+    <h1 style="text-align: center">VABAD AJAD</h1>
     <br>
-    <v-container style="text-align: center">
-      <v-row>
-        <v-col
-            cols="12"
-            lg="12"
-        >
-          <v-menu
-              ref="menu1"
-              v-model="menu1"
-              :close-on-content-click="false"
-              transition="scale-transition"
-              offset-y
-              max-width="290px"
-              min-width="auto"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-text-field
-                  v-model="dateFormatted"
-                  label="Date"
-                  hint="MM/DD/YYYY format"
-                  persistent-hint
-                  prepend-icon="mdi-calendar"
-                  v-bind="attrs"
-                  @blur="date = parseDate(dateFormatted)"
-                  v-on="on"
-              ></v-text-field>
-            </template>
-            <v-date-picker
-                v-model="date"
-                no-title
-                @input="menu1 = false"
-                @click:date="getInfoForDocCard"
-            ></v-date-picker>
-          </v-menu>
-          <strong>Valitud kuupäev: {{ formatDate(date) }}</strong>
-          <br>
-        </v-col>
+    <!--    <v-container style="text-align: center">-->
+    <!--      <v-row>-->
+    <!--        <v-col-->
+    <!--            cols="12"-->
+    <!--            lg="12"-->
+    <!--        >-->
+    <!--          <v-menu-->
+    <!--              ref="menu1"-->
+    <!--              v-model="menu1"-->
+    <!--              :close-on-content-click="false"-->
+    <!--              transition="scale-transition"-->
+    <!--              offset-y-->
+    <!--              max-width="290px"-->
+    <!--              min-width="auto"-->
+    <!--          >-->
+    <!--            <template v-slot:activator="{ on, attrs }">-->
+    <!--              <v-text-field-->
+    <!--                  v-model="dateFormatted"-->
+    <!--                  label="Date"-->
+    <!--                  hint="MM/DD/YYYY format"-->
+    <!--                  persistent-hint-->
+    <!--                  prepend-icon="mdi-calendar"-->
+    <!--                  v-bind="attrs"-->
+    <!--                  @blur="date = parseDate(dateFormatted)"-->
+    <!--                  v-on="on"-->
+    <!--              ></v-text-field>-->
+    <!--            </template>-->
+    <!--            <v-date-picker-->
+    <!--                v-model="date"-->
+    <!--                no-title-->
+    <!--                @input="menu1 = false">-->
+    <!--              @click:date="getInfoForDocard"-->
+    <!--            </v-date-picker>-->
+    <!--          </v-menu>-->
+    <!--          <strong>Valitud kuupäev: {{ formatDate(date) }}</strong>-->
+    <!--          <br>-->
+    <!--        </v-col>-->
 
-      </v-row>
-    </v-container>
+    <!--      </v-row>-->
+    <!--    </v-container>-->
+
     <v-container class="grey lighten-5">
       <v-row class="justify-center">
         <v-col
             v-for="row in InfoForDocCard"
-            :key="row"
             cols="auto"
 
         >
@@ -65,39 +65,41 @@
             <br>
             <v-card-text>
               <v-row style="font-size: 1.4em; font-weight: 600; padding-bottom: 5px; padding-top: 8px">
-                {{ row.docFirstName }}
-                {{ row.docLastName }}
+                {{ row.docFirstName }} {{ row.docLastName }}
               </v-row>
               <v-row>{{ row.docProfession }}</v-row>
-              <v-row>Litsentsi nr: {{ row.docLicense }}</v-row>
-              <v-row>Aadress: {{ row.docArea }}</v-row>
+              <v-row>litsentsi nr: {{ row.docLicense }}</v-row>
+              <v-row>aadress: {{ row.docArea }}</v-row>
             </v-card-text>
             <br>
             <v-divider class="mx-4"></v-divider>
             <br>
             <v-card-text style="padding-top: 1px">
-              <v-row style="font-size: 1em; font-weight: 600; padding-bottom: 5px; padding-top: 5px; margin-left: auto; margin-right: auto">visiidi valik
+              <v-row
+                  style="font-size: 1em; font-weight: 600; padding-bottom: 5px; padding-top: 5px; margin-left: auto; margin-right: auto">
+                visiidi valik
               </v-row>
               <br>
               <v-simple-table dense>
                 <template v-slot:default>
                   <thead>
-                  <tr>
+                  <tr style="background-color: lightgrey">
                     <th class="text-left">
                       Päev
                     </th>
                     <th class="text-left">
-                      Vabad Ajad
+                      Ajad
                     </th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-
-<!--                      :key="item.name"-->
-
-                    <td>{{ row.bookingDate }}</td>
-                    <td v-for="rida in row.bookingTime"><v-chip>{{ rida }}</v-chip></td>
+                  <tr v-for="rida in row.bookingTimes">
+                    <td style="background-color: lightgrey">
+                      {{ formatDate(rida.date) }}
+                    </td>
+                    <td v-for="time in rida.timeList">
+                      {{ formatTime(time) }}
+                    </td>
                   </tr>
                   </tbody>
                 </template>
@@ -139,11 +141,8 @@ export default {
     allBookings: {},
     InfoForDocCard: {},
     InfoForDocDate: {},
-    day: [
-      {
-        name: 'päev',
-      }],
   }),
+
   computed: {
     computedDateFormatted() {
       return this.formatDate(this.date)
@@ -161,21 +160,44 @@ export default {
       this.loading = true
       setTimeout(() => (this.loading = false), 2000)
     },
+
+    getAllDoctors() {
+      this.$http.get('api/project/getDocList')
+          .then(response => {
+            this.allDoctors = response.data
+          })
+    },
+
+    getAllBookings() {
+      this.$http.get('api/project/getBookingsList')
+          .then(response => {
+            this.allBookings = response.data
+          })
+    },
+
     getInfoForDocCard() {
-      this.$http.get('api/project/getInfoForDocDate/' + this.date)
+      this.$http.get('api/project/getInfoForDocCard/'/*+ this.date*/)
           .then(response => {
             this.InfoForDocCard = response.data
           })
     },
+
     formatDate(date) {
       if (!date) return null
-
       const [year, month, day] = date.split('-')
-      return `${month}/${day}/${year}`
+      // return `${month}/${day}/${year}`
+      return `${day}.${month}`
     },
+
+    formatTime(time) {
+      if (!time) return null
+      const [hour, minute, second] = time.split(':')
+      // return `${month}/${day}/${year}`
+      return `${hour}:${minute}`
+    },
+
     parseDate(date) {
       if (!date) return null
-
       const [month, day, year] = date.split('/')
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
     },
