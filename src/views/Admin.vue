@@ -7,20 +7,20 @@
           elevation="2"
           outlined
           v-on:click="goToDoc()"
-      >Add a new doctor
+      >Lisa uus arst andmebaasi
       </v-btn> <br><br>
       <v-btn
           elevation="2"
           outlined
           v-on:click="goToNewDate()"
-      >Add new free date for doctor
+      >Lisa uus arstiaeg andmebaasi
       </v-btn>
       <br><br>
       <v-btn
           elevation="2"
           outlined
           v-on:click="goToOverall()"
-      >View all reservatioons
+      >Vaata kõiki broneeringuid
       </v-btn>
 
     </div>
@@ -53,7 +53,7 @@ export default {
       router.push({name: 'AddDate'});
     },
     goToOverall: function () {
-      router.push({name: 'DocOverall'});
+      router.push({name: 'ResOverall'});
     }
   },
 }

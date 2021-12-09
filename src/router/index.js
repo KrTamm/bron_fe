@@ -4,15 +4,21 @@ import Broneerimine from "../views/Broneerimine";
 import Admin from "../views/Admin";
 import AddDoc from "../views/AddDoc";
 import AddDate from "../views/AddDate";
-import DocOverall from "../views/DocOverall";
+import ResOverall from "../views/ResOverall";
+import Kasutaja from "../views/Kasutaja";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/bron',
+    path: 'kasutaja/bron',
     name: 'Broneerimine',
     component: Broneerimine
+  },
+  {
+    path: '/kasutaja',
+    name: 'Kasutaja',
+    component: Kasutaja
   },
   {
     path: 'admin/addDoc',
@@ -25,9 +31,9 @@ const routes = [
     component: AddDate
   },
   {
-    path: 'admin/docOverall',
-    name: 'DocOverall',
-    component: DocOverall
+    path: 'admin/resOverall',
+    name: 'ResOverall',
+    component: ResOverall
   },
   {
     path: '/admin',

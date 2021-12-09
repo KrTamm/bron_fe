@@ -37,7 +37,7 @@
                 @click:date="getInfoForDocCard"
             ></v-date-picker>
           </v-menu>
-          <strong>{{ formatDate(date) }}</strong>
+          <strong>Valitud kuupäev: {{ formatDate(date) }}</strong>
           <br>
         </v-col>
 
