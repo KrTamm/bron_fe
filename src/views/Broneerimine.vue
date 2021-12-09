@@ -161,19 +161,6 @@ export default {
       this.loading = true
       setTimeout(() => (this.loading = false), 2000)
     },
-
-    getAllDoctors() {
-      this.$http.get('api/project/getDocList')
-          .then(response => {
-            this.allDoctors = response.data
-          })
-    },
-    getAllBookings() {
-      this.$http.get('api/project/getBookingsList')
-          .then(response => {
-            this.allBookings = response.data
-          })
-    },
     getInfoForDocCard() {
       this.$http.get('api/project/getInfoForDocDate/' + this.date)
           .then(response => {

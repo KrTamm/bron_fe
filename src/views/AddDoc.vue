@@ -7,35 +7,30 @@
       <br>
       <v-text-field
           v-model="newDoc.docFirstName"
-          :rules="nameRules"
           label="Eesnimi"
           required
       ></v-text-field>
 
       <v-text-field
           v-model="newDoc.docLastName"
-          :rules="nameRules"
           label="Perenimi"
           required
       ></v-text-field>
 
       <v-text-field
           v-model="newDoc.docProfession"
-          :rules="nameRules"
           label="Amet"
           required
       ></v-text-field>
 
       <v-text-field
           v-model="newDoc.docArea"
-          :rules="nameRules"
           label="Asukoht"
           required
       ></v-text-field>
 
       <v-text-field
           v-model="newDoc.docLicense"
-          :rules="nameRules"
           label="Litsents"
           required
       ></v-text-field>
@@ -45,7 +40,7 @@
           color="green"
           elevation="2"
           @click="addDoc"
-      >Sumbit
+      >Lisa
       </v-btn>
       <br>
       <v-alert
@@ -55,7 +50,7 @@
           dismissible
           type="success"
           @input="onclose"
-      >Doctor added!
+      >Uus arst andmebaasi sisestatud!
       </v-alert>
     </div>
   </div>
@@ -72,9 +67,6 @@ export default {
     docLicense: '',
     newDoc: {},
     doctorAdd: {},
-    nameRules: [
-      v => !!v || 'Name is required'
-    ],
     show: false
   }),
 

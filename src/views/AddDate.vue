@@ -30,60 +30,80 @@
         </v-menu>
       </div>
 
-      <v-container style="text-align: center">
-        <v-row>
-          <v-col
-              cols="12"
-              lg="12"
-          >
-            <v-menu
-                ref="menu1"
-                v-model="menu1"
-                :close-on-content-click="false"
-                transition="scale-transition"
-                offset-y
-                max-width="290px"
-                min-width="auto"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                    v-model="dateFormatted"
-                    label="Date"
-                    hint="MM/DD/YYYY format"
-                    persistent-hint
-                    prepend-icon="mdi-calendar"
-                    v-bind="attrs"
-                    @blur="date = parseDate(dateFormatted)"
-                    v-on="on"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                  v-model="date"
-                  no-title
-                  @input="menu1 = false"
-                  @click:date="getInfoForDocCard"
-              ></v-date-picker>
-            </v-menu>
-            <strong>Valitud kuupäev: {{ formatDate(date) }}</strong>
-            <br>
-          </v-col>
-        </v-row>
-      </v-container>
+<!--      <v-container style="text-align: center">-->
+<!--        <v-row>-->
+<!--          <v-col-->
+<!--              cols="12"-->
+<!--              lg="12"-->
+<!--          >-->
+<!--            <v-menu-->
+<!--                ref="menu1"-->
+<!--                v-model="menu1"-->
+<!--                :close-on-content-click="false"-->
+<!--                transition="scale-transition"-->
+<!--                offset-y-->
+<!--                max-width="290px"-->
+<!--                min-width="auto"-->
+<!--            >-->
+<!--              <template v-slot:activator="{ on, attrs }">-->
+<!--                <v-text-field-->
+<!--                    v-model="dateFormatted"-->
+<!--                    label="Date"-->
+<!--                    hint="MM/DD/YYYY format"-->
+<!--                    persistent-hint-->
+<!--                    prepend-icon="mdi-calendar"-->
+<!--                    v-bind="attrs"-->
+<!--                    @blur="date = parseDate(dateFormatted)"-->
+<!--                    v-on="on"-->
+<!--                ></v-text-field>-->
+<!--              </template>-->
+<!--              <v-date-picker-->
+<!--                  v-model="date"-->
+<!--                  no-title-->
+<!--                  @input="menu1 = false"-->
+<!--                  @click:date="getInfoForDocCard"-->
+<!--              ></v-date-picker>-->
+<!--            </v-menu>-->
+<!--            <strong>Valitud kuupäev: {{ formatDate(date) }}</strong>-->
+<!--            <br>-->
+<!--          </v-col>-->
+<!--        </v-row>-->
+<!--      </v-container>-->
+
+      <v-text-field
+          v-model="newBronTimeADate.docId"
+          label="Arsti ID"
+          required
+      ></v-text-field>
+      <v-text-field
+          v-model="newBronTimeADate.bookingDate"
+          hint="YYYY-MM-DD format"
+          label="Kuupäev"
+          required
+      ></v-text-field>
+      <v-text-field
+          v-model="newBronTimeADate.bookingTime"
+          hint="HH:MM:SS format"
+          label="Kellaaeg"
+          required
+      ></v-text-field>
 
       <v-btn
           block
           color="green"
           elevation="2"
           @click="addDateToDatabase"
-      >Sumbit
+      >Lisa
       </v-btn><br>
 
       <v-alert
+          v-if="this.show"
           border="left"
           dense
           dismissible
           type="success"
-      >Doctor added!
+          @input="onclose"
+      >Uus arstiaeg lisatud!
       </v-alert>
 
     </div>
@@ -100,31 +120,24 @@ export default {
       {title: 'Click Me'},
       {title: 'Click Me 2'},
     ],
-    docFirstName: '',
-    docLastName: '',
-    docProfession: '',
-    docArea: '',
-    docLicense: '',
-    newDoc: {},
-    doctorAdd: {},
-    nameRules: [
-      v => !!v || 'Name is required'
-    ],
+    newBronTimeADate: {},
+    docId: '',
+    bookingDate: '',
+    bookingTime: '',
+    bronAdd: {},
+    show: false
   }),
 
   methods: {
-    addDoc: function () {
-      this.$http.post('/api/project/createDoc', this.newDoc)
-          .then(response => {
-            this.doctorAdd = response.data
-
-          })
-    },
     addDateToDatabase: function () {
-      this.$http.get('api/project/getInfoForDocDate/' + this.date)
+      this.$http.post('/api/project/createNewBron', this.newBronTimeADate)
           .then(response => {
-            this.InfoForDocCard = response.data
+            this.bronAdd = response.data
           })
+      this.show = true
+    },
+    onclose: function () {
+      this.show = false
     }
   },
 }
