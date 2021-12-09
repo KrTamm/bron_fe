@@ -6,8 +6,8 @@
     >
 
       <div id="nav" style="margin-right: auto;margin-left: auto">
-        <router-link to="/bron">Broneeringud</router-link> |
-        <router-link to="/addDoc">Lisa Arst</router-link>
+        <router-link to="/bron">Kasutaja(Broneeringud)</router-link> |
+        <router-link to="/admin">Admin</router-link>
       </div>
 
 
