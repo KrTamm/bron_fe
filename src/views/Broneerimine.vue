@@ -75,17 +75,40 @@
             <br>
             <v-divider class="mx-4"></v-divider>
             <br>
-            <v-card-text>
-              <v-row style="font-size: 1.4em; font-weight: 600; padding-bottom: 5px; padding-top: 5px">Vabad Ajad
+            <v-card-text style="padding-top: 1px">
+              <v-row style="font-size: 1em; font-weight: 600; padding-bottom: 5px; padding-top: 5px; margin-left: auto; margin-right: auto">visiidi valik
               </v-row>
               <br>
-              <v-chip-group
-                  v-model="row.selection"
-                  active-class="deep-purple accent-4 white--text"
-                  column
-              >
-                <v-chip v-for="rida in row.bookingTime">{{ rida }}</v-chip>
-              </v-chip-group>
+              <v-simple-table dense>
+                <template v-slot:default>
+                  <thead>
+                  <tr>
+                    <th class="text-left">
+                      Päev
+                    </th>
+                    <th class="text-left">
+                      Vabad Ajad
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+
+<!--                      :key="item.name"-->
+
+                    <td>{{ row.bookingDate }}</td>
+                    <td v-for="rida in row.bookingTime"><v-chip>{{ rida }}</v-chip></td>
+                  </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+              <!--              <v-chip-group-->
+              <!--                  v-model="row.selection"-->
+              <!--                  active-class="deep-purple accent-4 white&#45;&#45;text"-->
+              <!--                  column-->
+              <!--              >-->
+              <!--                <v-chip v-for="rida in row.bookingTime">{{ rida }}</v-chip>-->
+              <!--              </v-chip-group>-->
             </v-card-text>
             <v-card-actions style="padding: 0px">
               <v-btn
@@ -115,7 +138,11 @@ export default {
     allDoctors: {},
     allBookings: {},
     InfoForDocCard: {},
-    InfoForDocDate: {}
+    InfoForDocDate: {},
+    day: [
+      {
+        name: 'päev',
+      }],
   }),
   computed: {
     computedDateFormatted() {

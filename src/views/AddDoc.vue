@@ -49,11 +49,12 @@
       </v-btn>
       <br>
       <v-alert
-
+          v-if="this.show"
           border="left"
           dense
           dismissible
           type="success"
+          @input="onclose"
       >Doctor added!
       </v-alert>
     </div>
@@ -74,6 +75,7 @@ export default {
     nameRules: [
       v => !!v || 'Name is required'
     ],
+    show: false
   }),
 
   methods: {
@@ -81,9 +83,13 @@ export default {
       this.$http.post('/api/project/createDoc', this.newDoc)
           .then(response => {
             this.doctorAdd = response.data
-
           })
+      this.show = true
+    },
+    onclose: function () {
+      this.show = false
     }
-  },
+  }
+
 }
 </script>
