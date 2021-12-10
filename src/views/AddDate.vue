@@ -1,4 +1,4 @@
-<template>
+q<template>
   <div>
     <br>
     <h1 style="text-align: center">LISA UUS ARSTIAEG ANDMEBAASI</h1>

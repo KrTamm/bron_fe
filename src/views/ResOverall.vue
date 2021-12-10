@@ -2,7 +2,6 @@
   <div style="margin-left: auto; margin-right: auto">
     <br>
     <h1 style="text-align: center">BRONEERINGUTE HALDUS</h1>
-<!--    {{ allBookings }}-->
     <br>
     <v-card style="max-width: 1000px;margin-left: auto; margin-right: auto">
       <v-card-title>
@@ -18,7 +17,14 @@
           :headers="headers"
           :items="allBookings"
           :search="search"
-      ></v-data-table>
+          :items-per-page="15"
+      >
+        <template v-slot:item.controls="props">
+          <v-btn @click="cancelButton(props.item.bookingId)">
+            <v-icon style="font-size: small">cancel bron</v-icon>
+          </v-btn>
+        </template>
+      </v-data-table>
     </v-card>
   </div>
 </template>
@@ -28,6 +34,7 @@
 export default {
   data() {
     return {
+      bronCancel: "",
       allBookings: [],
       search: '',
       headers: [
@@ -37,6 +44,7 @@ export default {
         {text: 'Patsiendi email', value: 'userEmail'},
         {text: 'Broneeringu kuupäev', value: 'bookingDate'},
         {text: 'Broneeringu kellaaaeg', value: 'bookingTime'},
+        {text: 'Tühistamine', sortable: false, filterable: false, value: 'controls', align: 'center'},
       ],
     }
   },
@@ -46,6 +54,13 @@ export default {
       this.$http.get('api/project/getBookingsList')
           .then(response => {
             this.allBookings = response.data
+          })
+    },
+    cancelButton(id) {
+      this.$http.put('/api/project/cancelBron/' + id)
+          .then(response => {
+            this.bronCancel = response.data
+            this.populateBronTable();
           })
     }
   },

@@ -1,14 +1,16 @@
 <template>
-  <div class="broneerimine">
-    <h1 style="text-align: center">Siia tekib uue aja broneerimine</h1>
-    <div class="text-center align-center justify-space-around">
+  <div>
+    <br>
+    <h1 style="text-align: center">KINNITA OMA BRONEERING</h1>
+    <br>
+    <div class="text-center align-center justify-space-around"
+         style="max-width: 300px; margin-left: auto; margin-right: auto">
 
       <v-text-field
-          v-model="userMail"
+          v-model="userEmail"
           label="Sisesta oma e-mail"
           required
       ></v-text-field>
-
 
 
       <v-btn
@@ -29,15 +31,14 @@ export default {
   data: () => ({
     uusAeg: "",
     id: "",
-    userMail: ""
+    userEmail: ""
   }),
-
 
 
   methods: {
     teeUusAeg() {
-      let body= {
-        "userMail" : this.userMail
+      let body = {
+        "userEmail": this.userEmail
       }
       this.$http.put("api/project/makeBron/" + this.$route.params.id, body)
           .then(response => {
