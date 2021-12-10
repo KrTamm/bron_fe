@@ -97,8 +97,8 @@
                     <td style="background-color: lightgrey">
                       {{ formatDate(rida.date) }}
                     </td>
-                    <td v-for="time in rida.timeList">
-                      {{ formatTime(time.bookingTime }}
+                    <td v-for="time in rida.timeList" v-model="time.bookingID">
+                      {{ formatTime(time.bookingTime) }}
                     </td>
                   </tr>
                   </tbody>
