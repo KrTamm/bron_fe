@@ -98,7 +98,7 @@
                       {{ formatDate(rida.date) }}
                     </td>
                     <td v-for="time in rida.timeList">
-                      {{ formatTime(time) }}
+                      {{ formatTime(time.bookingTime }}
                     </td>
                   </tr>
                   </tbody>
