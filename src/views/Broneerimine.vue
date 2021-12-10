@@ -97,26 +97,27 @@
                     <td style="background-color: lightgrey">
                       {{ formatDate(rida.date) }}
                     </td>
-                    <td v-for="time in rida.timeList" v-model="time.bookingID">
-                      {{ formatTime(time.bookingTime) }}
+                    <td>
+
+                      <v-chip-group
+                          v-model="rida.selection"
+                          active-class="deep-purple accent-4 white--text"
+                          column
+                      >
+                        <v-chip v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)">{{ formatTime(time.bookingTime) }}</v-chip>
+                      </v-chip-group>
+                      <!--                      InfoForDocCard[0].bookingTimes[0].timeList[0].bookingId-->
                     </td>
                   </tr>
                   </tbody>
                 </template>
               </v-simple-table>
-              <!--              <v-chip-group-->
-              <!--                  v-model="row.selection"-->
-              <!--                  active-class="deep-purple accent-4 white&#45;&#45;text"-->
-              <!--                  column-->
-              <!--              >-->
-              <!--                <v-chip v-for="rida in row.bookingTime">{{ rida }}</v-chip>-->
-              <!--              </v-chip-group>-->
             </v-card-text>
             <v-card-actions style="padding: 0px">
               <v-btn
                   color="deep-purple lighten-2"
                   text
-                  @click="reserve"
+                  @click="goToNewBron(selection)"
               >Reserveeri Aeg
               </v-btn>
             </v-card-actions>
@@ -129,6 +130,8 @@
 
 
 <script>
+import router from "../router";
+
 export default {
   data: vm => ({
     date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
@@ -141,6 +144,8 @@ export default {
     allBookings: {},
     InfoForDocCard: {},
     InfoForDocDate: {},
+    bookingId: "",
+    rida: ""
   }),
 
   computed: {
@@ -201,6 +206,13 @@ export default {
       const [month, day, year] = date.split('/')
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
     },
+    goToNewBron: function (id) {
+      router.push({
+        name: 'UusAegBron', params: {
+          id: id
+        }
+      });
+    }
 
   },
   mounted() {
