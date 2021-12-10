@@ -33,7 +33,7 @@
       <v-btn
           color="deep-purple lighten-2"
           text
-          @click="teeUusAeg"
+          @click="teeUusAeg(); saadaMeil()"
       >Reserveeri Aeg
       </v-btn>
     </div>
@@ -62,6 +62,9 @@ export default {
           .then(response => {
             this.uusAeg = response.data
           })
+    },
+    saadaMeil() {
+      this.$http.get("api/test/" + this.$route.params.id)
     }
   },
   mounted() {
