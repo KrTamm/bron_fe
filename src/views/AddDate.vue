@@ -130,7 +130,7 @@ export default {
 
   methods: {
     addDateToDatabase: function () {
-      this.$http.post('/api/project/createNewBron', this.newBronTimeADate)
+      this.$http.post('/api/protected/project/createNewBron', this.newBronTimeADate)
           .then(response => {
             this.bronAdd = response.data
           })

@@ -181,7 +181,7 @@ export default {
     },
 
     getInfoForDocCard() {
-      this.$http.get('api/project/getInfoForDocCard/'/*+ this.date*/)
+      this.$http.get('api/public/project/getInfoForDocCard/'/*+ this.date*/)
           .then(response => {
             this.InfoForDocCard = response.data
           })

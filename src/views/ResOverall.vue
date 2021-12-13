@@ -19,6 +19,7 @@
           :search="search"
           :items-per-page="15"
       >
+
         <template v-slot:item.controls="props">
           <v-btn @click="cancelButton(props.item.bookingId)">
             <v-icon style="font-size: small">cancel bron</v-icon>
@@ -51,13 +52,13 @@ export default {
 
   methods: {
     populateBronTable() {
-      this.$http.get('api/project/getBookingsList')
+      this.$http.get('api/public/project/getBookingsList')
           .then(response => {
             this.allBookings = response.data
           })
     },
     cancelButton(id) {
-      this.$http.put('/api/project/cancelBron/' + id)
+      this.$http.put('/api/protected/project/cancelBron/' + id)
           .then(response => {
             this.bronCancel = response.data
             this.populateBronTable();

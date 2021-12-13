@@ -6,7 +6,8 @@
     >
 
       <div id="nav" style="margin-right: auto;margin-left: auto">
-        <router-link to="/kasutaja">Kasutaja</router-link> |
+        <router-link to="/kasutaja">Kasutaja</router-link>
+        |
         <router-link to="/admin">Admin</router-link>
       </div>
 
@@ -14,7 +15,6 @@
     </v-app-bar>
 
     <v-main>
-
       <router-view/>
     </v-main>
   </v-app>
@@ -26,7 +26,8 @@ export default {
   name: 'App',
 
   data: () => ({
-    //
+    user: {},
+    token: ''
   }),
 };
 </script>

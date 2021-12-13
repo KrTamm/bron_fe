@@ -58,17 +58,17 @@ export default {
       let body = {
         "userEmail": this.userEmail
       }
-      this.$http.put("api/project/makeBron/" + this.$route.params.id, body)
+      this.$http.put("api/public/project/makeBron/" + this.$route.params.id, body)
           .then(response => {
             this.uusAeg = response.data
           })
     },
     saadaMeil() {
-      this.$http.get("api/test/" + this.$route.params.id)
+      this.$http.get("api/public/test/" + this.$route.params.id)
     }
   },
   mounted() {
-    this.$http.get("api/project/bronInfo/" + this.$route.params.id)
+    this.$http.get("api/public/project/bronInfo/" + this.$route.params.id)
         .then(response => this.doctor = response.data)
   }
 

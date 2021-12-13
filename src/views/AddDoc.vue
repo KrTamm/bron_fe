@@ -72,7 +72,7 @@ export default {
 
   methods: {
     addDoc: function () {
-      this.$http.post('/api/project/createDoc', this.newDoc)
+      this.$http.post('/api/protected/project/createDoc', this.newDoc)
           .then(response => {
             this.doctorAdd = response.data
           })
