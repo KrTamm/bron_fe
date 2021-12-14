@@ -57,20 +57,22 @@
               max-width="350"
               min-width="300"
           >
-            <v-img
-                height="75"
-                width="75"
-                src="../assets/logo.png"
-            ></v-img>
-            <br>
-            <v-card-text>
-              <v-row style="font-size: 1.4em; font-weight: 600; padding-bottom: 5px; padding-top: 8px">
-                {{ row.docFirstName }} {{ row.docLastName }}
-              </v-row>
-              <v-row>{{ row.docProfession }}</v-row>
-              <v-row>litsentsi nr: {{ row.docLicense }}</v-row>
-              <v-row>aadress: {{ row.docArea }}</v-row>
-            </v-card-text>
+            <div style="display: inline-flex">
+              <v-img
+                  height="75"
+                  width="75"
+                  src="../assets/logo.png"
+                  style="margin-top: 20px"
+              ></v-img>
+              <v-card-text style="padding-left: 35px">
+                <v-row style="font-size: 1.4em; font-weight: 600; padding-bottom: 5px; padding-top: 8px">
+                  {{ row.docFirstName }} {{ row.docLastName }}
+                </v-row>
+                <v-row>{{ row.docProfession }}</v-row>
+                <v-row>litsentsi nr: {{ row.docLicense }}</v-row>
+                <v-row>aadress: {{ row.docArea }}</v-row>
+              </v-card-text>
+            </div>
             <br>
             <v-divider class="mx-4"></v-divider>
             <br>
@@ -104,7 +106,9 @@
                           active-class="deep-purple accent-4 white--text"
                           column
                       >
-                        <v-chip v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)">{{ formatTime(time.bookingTime) }}</v-chip>
+                        <v-chip v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)">
+                          {{ formatTime(time.bookingTime) }}
+                        </v-chip>
                       </v-chip-group>
                       <!--                      InfoForDocCard[0].bookingTimes[0].timeList[0].bookingId-->
                     </td>
@@ -114,12 +118,12 @@
               </v-simple-table>
             </v-card-text>
             <v-card-actions style="padding: 0px">
-              <v-btn
-                  color="deep-purple lighten-2"
-                  text
-                  @click="goToNewBron(selection)"
-              >Reserveeri Aeg
-              </v-btn>
+              <!--              <v-btn-->
+              <!--                  color="deep-purple lighten-2"-->
+              <!--                  text-->
+              <!--                  @click="goToNewBron(selection)"-->
+              <!--              >Reserveeri Aeg-->
+              <!--              </v-btn>-->
             </v-card-actions>
           </v-card>
         </v-col>
