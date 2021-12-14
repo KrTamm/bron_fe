@@ -65,6 +65,8 @@ export default {
     },
     saadaMeil() {
       this.$http.get("api/public/test/" + this.$route.params.id)
+      alert('Broneerimine edukas!')
+      router.push({name: 'Kasutaja'})
     }
   },
   mounted() {
