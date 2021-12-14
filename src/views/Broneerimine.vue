@@ -4,6 +4,19 @@
     <h1 style="text-align: center">VABAD AJAD</h1>
     <br>
 
+    <v-container style="max-width: 400px; margin-left: auto; margin-right: auto">
+      <v-select
+          v-model="all"
+          :items="professionList"
+          item-text="docProfession"
+          menu-props="auto"
+          label="Vali amet"
+          hide-details
+          single-line
+          onclick=""
+      ></v-select>
+    </v-container>
+
     <v-container class="grey lighten-5">
       <v-row class="justify-center">
         <v-col
@@ -97,6 +110,7 @@ import router from "../router";
 
 export default {
   data: vm => ({
+    all: '',
     date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
     dateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
     menu1: false,
@@ -108,7 +122,9 @@ export default {
     InfoForDocCard: {},
     InfoForDocDate: {},
     bookingId: "",
-    rida: ""
+    rida: "",
+    professionList: [],
+    prof: ""
   }),
 
   computed: {
@@ -144,12 +160,17 @@ export default {
     },
 
     getInfoForDocCard() {
-      this.$http.get('api/public/project/getInfoForDocCard/'/*+ this.date*/)
+      this.$http.get('api/public/project/getInfoForDocCard/', this.prof )
           .then(response => {
             this.InfoForDocCard = response.data
           })
     },
-
+    getProfessionList() {
+      this.$http.get('api/public/professionList')
+          .then(response => {
+            this.professionList = response.data
+          })
+    },
     formatDate(date) {
       if (!date) return null
       const [year, month, day] = date.split('-')
@@ -180,6 +201,7 @@ export default {
   },
   mounted() {
     this.getInfoForDocCard();
+    this.getProfessionList();
   }
 }
 </script>
