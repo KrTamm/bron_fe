@@ -12,15 +12,15 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/kasutaja/bron',
+    path: '/',
     name: 'Broneerimine',
     component: Broneerimine
   },
-  {
-    path: '/kasutaja',
-    name: 'Kasutaja',
-    component: Kasutaja
-  },
+  // {
+  //   path: '/kasutaja',
+  //   name: 'Kasutaja',
+  //   component: Kasutaja
+  // },
   {
     path: 'admin/addDoc',
     name: 'AddDoc',

@@ -1,5 +1,8 @@
 <template>
   <div style="margin-left: auto; margin-right: auto">
+    <v-btn>
+      <router-link to="/admin">Admin</router-link>
+    </v-btn>
     <br>
     <h1 style="text-align: center">BRONEERINGUTE HALDUS</h1>
     <br>

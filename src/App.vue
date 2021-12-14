@@ -5,20 +5,34 @@
         color="lightgray"
     >
 
-      <div id="nav" style="text-align: left">
-        <v-btn><router-link to="/kasutaja/bron">Home</router-link></v-btn> |
-        <v-btn><router-link v-on:click.native="showtrue" to="/admin">Admin login</router-link></v-btn>
+      <v-container style="text-align: left">
+      <div id="nav">
+
+        <router-link to="/" style="text-decoration: none; color: inherit;">
+          <div  id="pealkiri">
+            SINUARSTID.ee
+          </div>
+        </router-link>
       </div>
-
-      <div style="font-style: italic; font-size: medium; font-weight: bold; margin-left: 20px; color: green">SINUARSTID.ee</div>
-
-      <v-container v-if="this.show" style="text-align: right; padding: 0px; margin: 0px">
-        kasutajanimi: <input v-model="user.kasutajaNimi" style="width: 100px">
-        Parool: <input v-model="user.password" style="width: 100px">
-        <v-btn v-on:click="login">Login</v-btn>
-<!--        <v-btn v-on:click="getData">Get Data</v-btn>-->
-        <v-btn v-on:click="logout">Logout</v-btn>
       </v-container>
+
+      <v-container style="text-align: right; padding: 0px; margin: 0px">
+        <div v-if="!token">
+          Kasutajanimi: <input v-model="user.kasutajaNimi" style="width: 100px">
+          Parool: <input @keyup.enter="login" v-model="user.password" style="width: 100px">
+          <v-btn v-on:click="login" >Login</v-btn>
+          <!--        <v-btn v-on:click="getData">Get Data</v-btn>-->
+        </div>
+        <div v-if="token">
+          Admin sisselogitud
+          <v-btn v-on:click="logout">Logout</v-btn>
+          <v-btn>
+            <router-link style="text-decoration: none; color: inherit;"
+                         to="/admin">Admin</router-link>
+          </v-btn>
+        </div>
+      </v-container>
+
 
     </v-app-bar>
 
@@ -29,6 +43,8 @@
 </template>
 
 <script>
+
+import router from "./router";
 
 export default {
   name: 'App',
@@ -48,7 +64,11 @@ export default {
             this.token = result.data
             localStorage.setItem(('user-token'), this.token)
             this.$http.defaults.headers.common['Authorization'] = "Bearer " + this.token
-          });
+            router.push({name: 'Admin'})
+            location.reload();
+          })
+
+
     }, getData() {
       this.$http.get('api/protected')
           .then(result => {
@@ -79,5 +99,15 @@ export default {
 #nav {
   color: white;
   text-align: center;
+}
+
+#pealkiri {
+  font-style: italic;
+  font-size: medium;
+  font-weight: bold;
+  margin-left: 20px;
+  color: green;
+  text-decoration: none;
+  text-align: left;
 }
 </style>
