@@ -7,8 +7,8 @@
       <v-btn
           elevation="2"
           outlined
-          v-on:click="goToDoc()"
-      >Lisa uus arst andmebaasi
+          v-on:click="goToDocBaas()"
+      >Arstide Andmebaas
       </v-btn>
       <br><br>
       <v-btn
@@ -51,14 +51,15 @@ export default {
   }),
 
   methods: {
-    goToDoc: function () {
-      router.push({name: 'AddDoc'});
-    },
+
     goToNewDate: function () {
       router.push({name: 'AddDate'});
     },
     goToOverall: function () {
       router.push({name: 'ResOverall'});
+    },
+    goToDocBaas: function () {
+      router.push({name: 'ArstideBaas'});
     },
 
   },

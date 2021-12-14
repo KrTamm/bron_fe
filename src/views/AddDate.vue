@@ -1,8 +1,5 @@
 q<template>
   <div>
-    <v-btn>
-      <router-link to="/admin">Admin</router-link>
-    </v-btn>
     <br>
     <h1 style="text-align: center">LISA UUS ARSTIAEG ANDMEBAASI</h1>
     <div id="doctorentryform" style="width: 400px; margin-left: auto; margin-right: auto"><br><br>

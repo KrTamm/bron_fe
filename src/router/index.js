@@ -7,6 +7,7 @@ import AddDate from "../views/AddDate";
 import ResOverall from "../views/ResOverall";
 import Kasutaja from "../views/Kasutaja";
 import UusAegBron from "../views/UusAegBron";
+import ArstideBaas from "../views/ArstideBaas";
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes = [
     path: '/kasutaja/bron/uusaeg/:id',
     name: 'UusAegBron',
     component: UusAegBron
+  },
+  {
+    path: 'admin/arstidebaas',
+    name: 'ArstideBaas',
+    component: ArstideBaas
   }
 
 ]

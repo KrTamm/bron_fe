@@ -1,12 +1,9 @@
 <template>
   <div style="margin-left: auto; margin-right: auto">
-    <v-btn>
-      <router-link to="/admin">Admin</router-link>
-    </v-btn>
     <br>
-    <h1 style="text-align: center">BRONEERINGUTE HALDUS</h1>
+    <h1 style="text-align: center">VABADE AEGADE JA BRONNIDE HALDUS</h1>
     <br>
-    <v-card style="max-width: 1000px;margin-left: auto; margin-right: auto">
+    <v-card style="max-width: 1200px;margin-left: auto; margin-right: auto">
       <v-card-title>
         <v-text-field
             v-model="search"
@@ -17,15 +14,21 @@
         ></v-text-field>
       </v-card-title>
       <v-data-table
+          dense
           :headers="headers"
           :items="allBookings"
           :search="search"
           :items-per-page="15"
       >
-
-        <template v-slot:item.controls="props">
-          <v-btn @click="cancelButton(props.item.bookingId)">
+        <template v-slot:item.controls="props"
+        >
+          <v-btn v-if="props.item.userEmail" @click="cancelButton(props.item.bookingId)">
             <v-icon style="font-size: small">cancel bron</v-icon>
+          </v-btn>
+        </template>
+        <template v-slot:item.controls2="props2">
+          <v-btn @click="deleteButton(props2.item.bookingId)">
+            <v-icon style="font-size: small">delete time</v-icon>
           </v-btn>
         </template>
       </v-data-table>
@@ -39,16 +42,18 @@ export default {
   data() {
     return {
       bronCancel: "",
+      deleteTime: "",
       allBookings: [],
       search: '',
       headers: [
         {text: 'Booking ID', align: 'start', filterable: false, value: 'bookingId'},
         {text: 'Doc ID', value: 'docId'},
-        // {text: 'Arsti nimi', value: 'docName'},
+        {text: 'Arsti nimi', value: 'docLastName'},
         {text: 'Patsiendi email', value: 'userEmail'},
-        {text: 'Broneeringu kuupäev', value: 'bookingDate'},
-        {text: 'Broneeringu kellaaaeg', value: 'bookingTime'},
+        {text: 'Bron kuupäev', value: 'bookingDate'},
+        {text: 'Bron kellaaaeg', value: 'bookingTime'},
         {text: 'Tühistamine', sortable: false, filterable: false, value: 'controls', align: 'center'},
+        {text: 'Kustutamine', sortable: false, filterable: false, value: 'controls2', align: 'center'},
       ],
     }
   },
@@ -64,6 +69,13 @@ export default {
       this.$http.put('/api/protected/project/cancelBron/' + id)
           .then(response => {
             this.bronCancel = response.data
+            this.populateBronTable();
+          })
+    },
+    deleteButton(id) {
+      this.$http.delete('/api/protected/project/deleteTime/' + id)
+          .then(response => {
+            this.deleteTime = response.data
             this.populateBronTable();
           })
     }
