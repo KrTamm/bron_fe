@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <v-container style="background-color: gold; border-radius: 10px">
     <br>
     <h1 style="text-align: center">KINNITA OMA BRONEERING</h1>
     <br>
-    <div class="text-center align-center justify-space-around"
-         style="max-width: 500px; margin-left: auto; margin-right: auto">
+    <div class="text-center align-center justify-space-around grey lighten-5"
+         style="max-width: 500px; margin-left: auto; margin-right: auto; border-radius: 10px; font-size: small ">
 
-      <table style="border: 1px solid black" width="100%">
+      <table style="border: 1px solid black; border-radius: 10px" width="100%">
         <tr>
-          <th>Arsti nimi</th>
+          <th>Kangelane</th>
           <th>Amet</th>
           <th>Address</th>
           <th>Kuupäev</th>
@@ -22,22 +22,23 @@
           <td>{{ doctor.bookingTime }}</td>
         </tr>
       </table>
-
+<br>
       <v-text-field
           v-model="userEmail"
-          label="Sisesta oma e-mail"
+          label="Sisesta oma e-mail ja oota kokkulepitud ajal seal kus sul abi on vaja"
           required
+          style="font-size: smaller"
       ></v-text-field>
 
 
       <v-btn
-          color="deep-purple lighten-2"
+          color="#162CA2"
           text
           @click="teeUusAeg(); saadaMeil()"
       >Reserveeri Aeg
       </v-btn>
     </div>
-  </div>
+  </v-container>
 </template>
 
 

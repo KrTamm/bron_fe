@@ -17,7 +17,7 @@
       ></v-select>
     </v-container>
 
-    <v-container class="grey lighten-5">
+    <v-container>
       <v-row class="justify-center">
         <v-col
             v-for="row in InfoForDocCard"
@@ -28,6 +28,7 @@
               elevation="6"
               max-width="350"
               min-width="300"
+              style="background-color: #EC2004"
           >
             <div style="display: inline-flex">
               <v-img
@@ -54,21 +55,21 @@
                 vali sobiv aeg
               </v-row>
               <br>
-              <v-simple-table dense>
+              <v-simple-table dense style="border-radius: 10px">
                 <template v-slot:default>
                   <thead>
-                  <tr style="background-color: lightgrey">
-                    <th class="text-left">
+                  <tr style="background-color: gold">
+                    <th class="text-left" style="border-top-left-radius: 10px">
                       Päev
                     </th>
-                    <th class="text-left">
+                    <th class="text-left" style="border-top-right-radius: 10px">
                       Ajad
                     </th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr v-for="rida in row.bookingTimes">
-                    <td style="background-color: lightgrey">
+                    <td style="background-color: white; border-radius: 10px">
                       {{ formatDate(rida.date) }}
                     </td>
                     <td>
@@ -78,7 +79,7 @@
                           active-class="deep-purple accent-4 white--text"
                           column
                       >
-                        <v-chip v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)">
+                        <v-chip v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)" style="background-color: gold">
                           {{ formatTime(time.bookingTime) }}
                         </v-chip>
                       </v-chip-group>

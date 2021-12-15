@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-left: auto; margin-right: auto">
+  <v-container style="margin-left: auto; margin-right: auto">
     <br>
     <h1 style="text-align: center">ARSTIDE ANDMEBAAS</h1>
     <br>
@@ -8,11 +8,12 @@
         elevation="2"
         outlined
         v-on:click="goToDoc()"
+        style="background-color: gold"
     >Lisa uus arst andmebaasi
     </v-btn>
     </div>
     <br><br>
-    <v-card style="max-width: 1200px;margin-left: auto; margin-right: auto">
+    <v-card style="max-width: 1200px;margin-left: auto; margin-right: auto; background-color: gold">
       <v-card-title>
         <v-text-field
             v-model="search"
@@ -28,6 +29,7 @@
           :items="allDoctors"
           :search="search"
           :items-per-page="15"
+          style="background-color: gold"
       >
         <template v-slot:item.controls2="props2">
           <v-btn @click="deleteButton(props2.item.docId)">
@@ -36,7 +38,7 @@
         </template>
       </v-data-table>
     </v-card>
-  </div>
+  </v-container>
 </template>
 
 

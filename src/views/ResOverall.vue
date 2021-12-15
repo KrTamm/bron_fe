@@ -3,36 +3,37 @@
     <br>
     <h1 style="text-align: center">VABADE AEGADE JA BRONNIDE HALDUS</h1>
     <br>
-    <v-card style="max-width: 1200px;margin-left: auto; margin-right: auto">
-      <v-card-title>
-        <v-text-field
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="Search"
-            single-line
-            hide-details
-        ></v-text-field>
-      </v-card-title>
-      <v-data-table
-          dense
-          :headers="headers"
-          :items="allBookings"
-          :search="search"
-          :items-per-page="15"
-      >
-        <template v-slot:item.controls="props"
+      <v-card style="max-width: 1200px;margin-left: auto; margin-right: auto; background-color: gold">
+        <v-card-title>
+          <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+          ></v-text-field>
+        </v-card-title>
+        <v-data-table
+            dense
+            :headers="headers"
+            :items="allBookings"
+            :search="search"
+            :items-per-page="15"
+            style="background-color: gold"
         >
-          <v-btn v-if="props.item.userEmail" @click="cancelButton(props.item.bookingId)">
-            <v-icon style="font-size: small">cancel bron</v-icon>
-          </v-btn>
-        </template>
-        <template v-slot:item.controls2="props2">
-          <v-btn @click="deleteButton(props2.item.bookingId)">
-            <v-icon style="font-size: small">delete time</v-icon>
-          </v-btn>
-        </template>
-      </v-data-table>
-    </v-card>
+          <template v-slot:item.controls="props"
+          >
+            <v-btn v-if="props.item.userEmail" @click="cancelButton(props.item.bookingId)">
+              <v-icon style="font-size: small">cancel bron</v-icon>
+            </v-btn>
+          </template>
+          <template v-slot:item.controls2="props2">
+            <v-btn @click="deleteButton(props2.item.bookingId)">
+              <v-icon style="font-size: small">delete time</v-icon>
+            </v-btn>
+          </template>
+        </v-data-table>
+      </v-card>
   </div>
 </template>
 

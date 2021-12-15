@@ -8,6 +8,7 @@
           elevation="2"
           outlined
           v-on:click="goToDocBaas()"
+          style="background-color: gold"
       >Arstide Andmebaas
       </v-btn>
       <br><br>
@@ -15,6 +16,7 @@
           elevation="2"
           outlined
           v-on:click="goToNewDate()"
+          style="background-color: gold"
       >Lisa uus arstiaeg andmebaasi
       </v-btn>
       <br><br>
@@ -22,6 +24,7 @@
           elevation="2"
           outlined
           v-on:click="goToOverall()"
+          style="background-color: gold"
       >Halda vabu aegu ja broneeringuid
       </v-btn>
     </div>

@@ -2,15 +2,15 @@
   <v-app>
     <v-app-bar
         app
-        color="lightgray"
+        color="#EC2004"
     >
 
       <v-container style="text-align: left">
       <div id="nav">
 
         <router-link to="/" style="text-decoration: none; color: inherit;">
-          <div  id="pealkiri">
-            SINUARSTID.ee
+          <div  id="pealkiri" style="color: black; font-size: larger">
+            SINUKANGELASED.ee
           </div>
         </router-link>
       </div>
@@ -20,15 +20,14 @@
         <div v-if="!token">
           Kasutajanimi: <input v-model="user.kasutajaNimi" style="width: 100px">
           Parool: <input @keyup.enter="login" v-model="user.password" style="width: 100px">
-          <v-btn v-on:click="login" >Login</v-btn>
-          <!--        <v-btn v-on:click="getData">Get Data</v-btn>-->
+          <v-btn v-on:click="login" style="background-color: gold">Login</v-btn>
         </div>
         <div v-if="token">
           Admin sisselogitud
-          <v-btn v-on:click="logout">Logout</v-btn>
-          <v-btn>
-            <router-link style="text-decoration: none; color: inherit;"
-                         to="/admin">Admin</router-link>
+          <v-btn v-on:click="logout" style="background-color: gold">Logout</v-btn>
+          <v-btn style="background-color: gold; margin: 1px">
+            <router-link style="text-decoration: none; color: inherit"
+                         to="/admin" >Admin</router-link>
           </v-btn>
         </div>
       </v-container>
@@ -36,7 +35,7 @@
 
     </v-app-bar>
 
-    <v-main>
+    <v-main style="background-color: #162CA2">
       <router-view/>
     </v-main>
   </v-app>
