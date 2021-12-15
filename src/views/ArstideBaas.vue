@@ -1,18 +1,19 @@
 <template>
-  <div style="margin-left: auto; margin-right: auto">
+  <v-container style="margin-left: auto; margin-right: auto">
     <br>
-    <h1 style="text-align: center">ARSTIDE ANDMEBAAS</h1>
+    <h1 style="text-align: center; color: white">KANGELASTE ANDMEBAAS</h1>
     <br>
     <div class="text-center align-center justify-space-around">
-    <v-btn
-        elevation="2"
-        outlined
-        v-on:click="goToDoc()"
-    >Lisa uus arst andmebaasi
-    </v-btn>
+      <v-btn
+          elevation="2"
+          outlined
+          v-on:click="goToDoc()"
+          style="background-color: gold"
+      >Lisa uus kangelane andmebaasi
+      </v-btn>
     </div>
     <br><br>
-    <v-card style="max-width: 1200px;margin-left: auto; margin-right: auto">
+    <v-card style="max-width: 1200px;margin-left: auto; margin-right: auto; background-color: gold">
       <v-card-title>
         <v-text-field
             v-model="search"
@@ -28,15 +29,21 @@
           :items="allDoctors"
           :search="search"
           :items-per-page="15"
+          style="background-color: gold"
       >
         <template v-slot:item.controls2="props2">
           <v-btn @click="deleteButton(props2.item.docId)">
-            <v-icon style="font-size: small">delete doc</v-icon>
+            <v-icon style="font-size: small">terminate hero</v-icon>
+          </v-btn>
+        </template>
+        <template v-slot:item.controls3="props3">
+          <v-btn @click="goToAddDate(props3.item.docId)">
+            <v-icon style="font-size: small">add free timeslot</v-icon>
           </v-btn>
         </template>
       </v-data-table>
     </v-card>
-  </div>
+  </v-container>
 </template>
 
 
@@ -56,6 +63,7 @@ export default {
         {text: 'Perenimi', value: 'docLastName'},
         {text: 'Amet', value: 'docProfession'},
         {text: 'Asukoht', value: 'docArea'},
+        {text: 'Vaba aja lisamine', sortable: false, filterable: false, value: 'controls3', align: 'center'},
         {text: 'Kustutamine', sortable: false, filterable: false, value: 'controls2', align: 'center'},
       ],
     }
@@ -64,6 +72,9 @@ export default {
   methods: {
     goToDoc: function () {
       router.push({name: 'AddDoc'});
+    },
+    goToAddDate: function (id) {
+      router.push({name: 'AddDate', params: {id: id}});
     },
     populateDocTable() {
       this.$http.get('api/public/project/getDocList')

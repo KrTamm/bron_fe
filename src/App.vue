@@ -2,15 +2,15 @@
   <v-app>
     <v-app-bar
         app
-        color="lightgray"
+        color="#EC2004"
     >
 
       <v-container style="text-align: left">
       <div id="nav">
 
         <router-link to="/" style="text-decoration: none; color: inherit;">
-          <div  id="pealkiri">
-            SINUARSTID.ee
+          <div  id="pealkiri" style="color: white; font-family: Marvel;font-size: xx-large">
+            SINUKANGELASED.ee
           </div>
         </router-link>
       </div>
@@ -18,17 +18,16 @@
 
       <v-container style="text-align: right; padding: 0px; margin: 0px">
         <div v-if="!token">
-          Kasutajanimi: <input v-model="user.kasutajaNimi" style="width: 100px">
-          Parool: <input @keyup.enter="login" v-model="user.password" style="width: 100px">
-          <v-btn v-on:click="login" >Login</v-btn>
-          <!--        <v-btn v-on:click="getData">Get Data</v-btn>-->
+          admin: <input v-model="user.kasutajaNimi" style="width: 60px">
+          parool: <input @keyup.enter="login" v-model="user.password" style="width: 80px">
+          <v-btn v-on:click="login" style="background-color: gold">Login</v-btn>
         </div>
         <div v-if="token">
-          Admin sisselogitud
-          <v-btn v-on:click="logout">Logout</v-btn>
-          <v-btn>
-            <router-link style="text-decoration: none; color: inherit;"
-                         to="/admin">Admin</router-link>
+          admin sisselogitud
+          <v-btn v-on:click="logout" style="background-color: gold">Logout</v-btn>
+          <v-btn style="background-color: gold; margin: 1px">
+            <router-link style="text-decoration: none; color: inherit"
+                         to="/admin" >Admin</router-link>
           </v-btn>
         </div>
       </v-container>
@@ -36,7 +35,7 @@
 
     </v-app-bar>
 
-    <v-main>
+    <v-main style="background-color: #162CA2">
       <router-view/>
     </v-main>
   </v-app>
@@ -81,7 +80,8 @@ export default {
       this.token = '';
       localStorage.removeItem('user-token');
       alert("You have been logged out")
-      location.reload();
+      router.push({name: 'Broneerimine'})
+      // location.reload();
     }
   },
   mounted() {
@@ -91,9 +91,15 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "Marvel";
+  src: local("Marvel"),
+  url(./assets/marvel2.otf) format("truetype");
+}
 * {
   font-family: Verdana;
   font-weight: lighter;
+  /*letter-spacing: 2px;*/
 }
 
 #nav {

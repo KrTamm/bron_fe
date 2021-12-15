@@ -1,23 +1,10 @@
 <template>
   <div class="broneerimine">
     <br>
-    <h1 style="text-align: center">VABAD AJAD</h1>
+    <h1 style="text-align: center; color: white">VABAD AJAD</h1>
     <br>
 
-    <v-container style="max-width: 400px; margin-left: auto; margin-right: auto">
-      <v-select
-          v-model="all"
-          :items="professionList"
-          item-text="docProfession"
-          menu-props="auto"
-          label="Vali amet"
-          hide-details
-          single-line
-          onclick=""
-      ></v-select>
-    </v-container>
-
-    <v-container class="grey lighten-5">
+    <v-container>
       <v-row class="justify-center">
         <v-col
             v-for="row in InfoForDocCard"
@@ -28,14 +15,16 @@
               elevation="6"
               max-width="350"
               min-width="300"
+              style="background-color: #EC2004"
           >
             <div style="display: inline-flex">
               <v-img
                   height="75"
                   width="75"
-                  src="../assets/logo.png"
+                  :src="row.photo"
                   style="margin-top: 20px"
               ></v-img>
+
               <v-card-text style="padding-left: 35px">
                 <v-row style="font-size: 1.4em; font-weight: 600; padding-bottom: 5px; padding-top: 8px">
                   {{ row.docFirstName }} {{ row.docLastName }}
@@ -50,25 +39,25 @@
             <br>
             <v-card-text style="padding-top: 1px">
               <v-row
-                  style="font-size: 1em; font-weight: 600; padding-bottom: 5px; padding-top: 5px; margin-left: auto; margin-right: auto">
-                vali sobiv aeg
+                  style="font-size: 1em; font-weight: 600; padding-bottom: 5px; padding-top: 5px; margin-left: auto; margin-right: auto; text-align: center">
+                vali aeg
               </v-row>
               <br>
-              <v-simple-table dense>
+              <v-simple-table dense style="border-radius: 10px">
                 <template v-slot:default>
                   <thead>
-                  <tr style="background-color: lightgrey">
-                    <th class="text-left">
+                  <tr style="background-color: gold">
+                    <th class="text-left" style="border-top-left-radius: 10px">
                       Päev
                     </th>
-                    <th class="text-left">
+                    <th class="text-left" style="border-top-right-radius: 10px">
                       Ajad
                     </th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr v-for="rida in row.bookingTimes">
-                    <td style="background-color: lightgrey">
+                    <td style="background-color: white; border-radius: 10px">
                       {{ formatDate(rida.date) }}
                     </td>
                     <td>
@@ -78,11 +67,11 @@
                           active-class="deep-purple accent-4 white--text"
                           column
                       >
-                        <v-chip v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)">
+                        <v-chip v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)"
+                                style="background-color: gold">
                           {{ formatTime(time.bookingTime) }}
                         </v-chip>
                       </v-chip-group>
-                      <!--                      InfoForDocCard[0].bookingTimes[0].timeList[0].bookingId-->
                     </td>
                   </tr>
                   </tbody>
@@ -90,12 +79,6 @@
               </v-simple-table>
             </v-card-text>
             <v-card-actions style="padding: 0px">
-              <!--              <v-btn-->
-              <!--                  color="deep-purple lighten-2"-->
-              <!--                  text-->
-              <!--                  @click="goToNewBron(selection)"-->
-              <!--              >Reserveeri Aeg-->
-              <!--              </v-btn>-->
             </v-card-actions>
           </v-card>
         </v-col>
@@ -110,6 +93,7 @@ import router from "../router";
 
 export default {
   data: vm => ({
+    search: '',
     all: '',
     date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
     dateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
@@ -160,7 +144,7 @@ export default {
     },
 
     getInfoForDocCard() {
-      this.$http.get('api/public/project/getInfoForDocCard/', this.prof )
+      this.$http.get('api/public/project/getInfoForDocCard/', this.prof)
           .then(response => {
             this.InfoForDocCard = response.data
           })
@@ -185,17 +169,8 @@ export default {
       return `${hour}:${minute}`
     },
 
-    parseDate(date) {
-      if (!date) return null
-      const [month, day, year] = date.split('/')
-      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-    },
     goToNewBron: function (id) {
-      router.push({
-        name: 'UusAegBron', params: {
-          id: id
-        }
-      });
+      router.push({name: 'UusAegBron', params: {id: id}});
     }
 
   },
