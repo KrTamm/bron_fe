@@ -9,7 +9,7 @@
       <div id="nav">
 
         <router-link to="/" style="text-decoration: none; color: inherit;">
-          <div  id="pealkiri" style="color: black; font-size: larger">
+          <div  id="pealkiri" style="color: white; font-size: larger">
             SINUKANGELASED.ee
           </div>
         </router-link>
@@ -80,7 +80,8 @@ export default {
       this.token = '';
       localStorage.removeItem('user-token');
       alert("You have been logged out")
-      location.reload();
+      router.push({name: 'Broneerimine'})
+      // location.reload();
     }
   },
   mounted() {

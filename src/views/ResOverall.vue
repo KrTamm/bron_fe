@@ -1,7 +1,7 @@
 <template>
   <div style="margin-left: auto; margin-right: auto">
     <br>
-    <h1 style="text-align: center">VABADE AEGADE JA BRONNIDE HALDUS</h1>
+    <h1 style="text-align: center; color: white">VABADE AEGADE JA BRONNIDE HALDUS</h1>
     <br>
       <v-card style="max-width: 1200px;margin-left: auto; margin-right: auto; background-color: gold">
         <v-card-title>
@@ -21,8 +21,7 @@
             :items-per-page="15"
             style="background-color: gold"
         >
-          <template v-slot:item.controls="props"
-          >
+          <template v-slot:item.controls="props">
             <v-btn v-if="props.item.userEmail" @click="cancelButton(props.item.bookingId)">
               <v-icon style="font-size: small">cancel bron</v-icon>
             </v-btn>

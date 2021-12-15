@@ -1,7 +1,7 @@
 <template>
   <v-container style="background-color: gold; border-radius: 10px">
     <br>
-    <h1 style="text-align: center">KINNITA OMA BRONEERING</h1>
+    <h1 style="text-align: center; color: white">KINNITA OMA BRONEERING</h1>
     <br>
     <div class="text-center align-center justify-space-around grey lighten-5"
          style="max-width: 500px; margin-left: auto; margin-right: auto; border-radius: 10px; font-size: small ">
@@ -25,9 +25,9 @@
 <br>
       <v-text-field
           v-model="userEmail"
-          label="Sisesta oma e-mail ja oota kokkulepitud ajal seal kus sul abi on vaja"
+          style="font-size: medium"
+          label="Sisesta oma e-mail. Sinuga võetakse ühendust."
           required
-          style="font-size: smaller"
       ></v-text-field>
 
 
@@ -67,7 +67,7 @@ export default {
     saadaMeil() {
       this.$http.get("api/public/test/" + this.$route.params.id)
       alert('Broneerimine edukas!')
-      router.push({name: 'Kasutaja'})
+      router.push({name: 'Broneerimine'})
     }
   },
   mounted() {

@@ -1,7 +1,7 @@
 <template>
   <div class="broneerimine">
     <br>
-    <h1 style="text-align: center">VABAD AJAD</h1>
+    <h1 style="text-align: center; color: white">VABAD AJAD</h1>
     <br>
 
     <v-container style="max-width: 400px; margin-left: auto; margin-right: auto">
@@ -51,8 +51,8 @@
             <br>
             <v-card-text style="padding-top: 1px">
               <v-row
-                  style="font-size: 1em; font-weight: 600; padding-bottom: 5px; padding-top: 5px; margin-left: auto; margin-right: auto">
-                vali sobiv aeg
+                  style="font-size: 1em; font-weight: 600; padding-bottom: 5px; padding-top: 5px; margin-left: auto; margin-right: auto; text-align: center">
+                vali aeg
               </v-row>
               <br>
               <v-simple-table dense style="border-radius: 10px">
@@ -79,11 +79,11 @@
                           active-class="deep-purple accent-4 white--text"
                           column
                       >
-                        <v-chip v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)" style="background-color: gold">
+                        <v-chip v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)"
+                                style="background-color: gold">
                           {{ formatTime(time.bookingTime) }}
                         </v-chip>
                       </v-chip-group>
-                      <!--                      InfoForDocCard[0].bookingTimes[0].timeList[0].bookingId-->
                     </td>
                   </tr>
                   </tbody>
@@ -91,12 +91,6 @@
               </v-simple-table>
             </v-card-text>
             <v-card-actions style="padding: 0px">
-              <!--              <v-btn-->
-              <!--                  color="deep-purple lighten-2"-->
-              <!--                  text-->
-              <!--                  @click="goToNewBron(selection)"-->
-              <!--              >Reserveeri Aeg-->
-              <!--              </v-btn>-->
             </v-card-actions>
           </v-card>
         </v-col>
@@ -161,7 +155,7 @@ export default {
     },
 
     getInfoForDocCard() {
-      this.$http.get('api/public/project/getInfoForDocCard/', this.prof )
+      this.$http.get('api/public/project/getInfoForDocCard/', this.prof)
           .then(response => {
             this.InfoForDocCard = response.data
           })
@@ -186,17 +180,8 @@ export default {
       return `${hour}:${minute}`
     },
 
-    parseDate(date) {
-      if (!date) return null
-      const [month, day, year] = date.split('/')
-      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-    },
     goToNewBron: function (id) {
-      router.push({
-        name: 'UusAegBron', params: {
-          id: id
-        }
-      });
+      router.push({name: 'UusAegBron', params: {id: id}});
     }
 
   },

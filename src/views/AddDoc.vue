@@ -1,7 +1,7 @@
 <template>
   <div>
     <br>
-    <h1 style="text-align: center">LISA UUS ARST ANDMEBAASI</h1>
+    <h1 style="text-align: center; color: white">LISA UUS KANGELANE</h1>
     <div id="doctorentryform" style="width: 400px; margin-left: auto; margin-right: auto">
       <br>
       <br>
@@ -37,20 +37,23 @@
 
       <v-btn
           block
-          color="green"
           elevation="2"
           @click="addDoc"
+          style="background-color: gold"
       >Lisa
       </v-btn>
       <br>
       <v-alert
           v-if="this.show"
+          text
           border="left"
           dense
           dismissible
           type="success"
           @input="onclose"
-      >Uus arst andmebaasi sisestatud!
+          color="white"
+          style="text-align: center"
+      >Uus kangelane on andmebaasi sisestatud!
       </v-alert>
     </div>
   </div>

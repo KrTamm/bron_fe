@@ -2,30 +2,30 @@
 
   <div v-if="token">
     <br>
-    <h1 style="text-align: center">ADMINI TEGEVUSED:</h1> <br>
+    <h1 style="text-align: center; color: white">ADMINI TEGEVUSED</h1> <br>
     <div class="text-center align-center justify-space-around">
       <v-btn
           elevation="2"
           outlined
           v-on:click="goToDocBaas()"
           style="background-color: gold"
-      >Arstide Andmebaas
+      >Kangelaste Andmebaas
       </v-btn>
       <br><br>
-      <v-btn
-          elevation="2"
-          outlined
-          v-on:click="goToNewDate()"
-          style="background-color: gold"
-      >Lisa uus arstiaeg andmebaasi
-      </v-btn>
-      <br><br>
+<!--      <v-btn-->
+<!--          elevation="2"-->
+<!--          outlined-->
+<!--          v-on:click="goToNewDate()"-->
+<!--          style="background-color: gold"-->
+<!--      >Lisa uus arstiaeg andmebaasi-->
+<!--      </v-btn>-->
+<!--      <br><br>-->
       <v-btn
           elevation="2"
           outlined
           v-on:click="goToOverall()"
           style="background-color: gold"
-      >Halda vabu aegu ja broneeringuid
+      >Vabad ajad ja Broneeringud
       </v-btn>
     </div>
 
