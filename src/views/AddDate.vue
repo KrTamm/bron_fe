@@ -2,7 +2,7 @@ q
 <template>
   <div>
     <br>
-    <h1 style="text-align: center; color: white">LISA KANGELASELE VABA AJASLOT</h1>
+    <h1 style="text-align: center; color: white">SISESTA VABA AJASLOT</h1>
     <div id="doctorentryform" style="width: 400px; margin-left: auto; margin-right: auto"><br><br>
 
       <!--      <h2 class="text-center">Vali arst</h2>-->

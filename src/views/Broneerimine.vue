@@ -4,19 +4,6 @@
     <h1 style="text-align: center; color: white">VABAD AJAD</h1>
     <br>
 
-    <v-container style="max-width: 400px; margin-left: auto; margin-right: auto">
-      <v-select
-          v-model="all"
-          :items="professionList"
-          item-text="docProfession"
-          menu-props="auto"
-          label="Vali amet"
-          hide-details
-          single-line
-          onclick=""
-      ></v-select>
-    </v-container>
-
     <v-container>
       <v-row class="justify-center">
         <v-col
@@ -34,9 +21,10 @@
               <v-img
                   height="75"
                   width="75"
-                  src="../assets/logo.png"
+                  :src="row.photo"
                   style="margin-top: 20px"
               ></v-img>
+
               <v-card-text style="padding-left: 35px">
                 <v-row style="font-size: 1.4em; font-weight: 600; padding-bottom: 5px; padding-top: 8px">
                   {{ row.docFirstName }} {{ row.docLastName }}
@@ -105,6 +93,7 @@ import router from "../router";
 
 export default {
   data: vm => ({
+    search: '',
     all: '',
     date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
     dateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),

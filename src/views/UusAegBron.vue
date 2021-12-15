@@ -30,7 +30,6 @@
           required
       ></v-text-field>
 
-
       <v-btn
           color="#162CA2"
           text
@@ -50,7 +49,7 @@ export default {
     uusAeg: "",
     id: "",
     userEmail: "",
-    doctor: []
+    doctor: [],
   }),
 
 

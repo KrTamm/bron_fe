@@ -9,7 +9,7 @@
       <div id="nav">
 
         <router-link to="/" style="text-decoration: none; color: inherit;">
-          <div  id="pealkiri" style="color: white; font-size: larger">
+          <div  id="pealkiri" style="color: white; font-family: Marvel;font-size: xx-large">
             SINUKANGELASED.ee
           </div>
         </router-link>
@@ -18,12 +18,12 @@
 
       <v-container style="text-align: right; padding: 0px; margin: 0px">
         <div v-if="!token">
-          Kasutajanimi: <input v-model="user.kasutajaNimi" style="width: 100px">
-          Parool: <input @keyup.enter="login" v-model="user.password" style="width: 100px">
+          admin: <input v-model="user.kasutajaNimi" style="width: 60px">
+          parool: <input @keyup.enter="login" v-model="user.password" style="width: 80px">
           <v-btn v-on:click="login" style="background-color: gold">Login</v-btn>
         </div>
         <div v-if="token">
-          Admin sisselogitud
+          admin sisselogitud
           <v-btn v-on:click="logout" style="background-color: gold">Logout</v-btn>
           <v-btn style="background-color: gold; margin: 1px">
             <router-link style="text-decoration: none; color: inherit"
@@ -91,9 +91,15 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "Marvel";
+  src: local("Marvel"),
+  url(./assets/marvel2.otf) format("truetype");
+}
 * {
   font-family: Verdana;
   font-weight: lighter;
+  /*letter-spacing: 2px;*/
 }
 
 #nav {
