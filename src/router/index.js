@@ -8,12 +8,13 @@ import ResOverall from "../views/ResOverall";
 import Kasutaja from "../views/Kasutaja";
 import UusAegBron from "../views/UusAegBron";
 import ArstideBaas from "../views/ArstideBaas";
+import Esileht from "../views/Esileht";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/broneerimine',
     name: 'Broneerimine',
     component: Broneerimine
   },
@@ -22,6 +23,11 @@ const routes = [
   //   name: 'Kasutaja',
   //   component: Kasutaja
   // },
+  {
+    path: '/',
+    name: 'Esileht',
+    component: Esileht
+  },
   {
     path: 'admin/addDoc',
     name: 'AddDoc',
