@@ -39,11 +39,11 @@
 
               <v-card-text style="padding-left: 35px">
                 <v-row style="font-size: 1.4em; font-weight: 600; padding-bottom: 5px; padding-top: 8px">
-                  {{ row.docFirstName }} {{ row.docLastName }}
+                  {{ row.docLastName }}
                 </v-row>
                 <v-row>{{ row.docProfession }}</v-row>
-                <v-row>litsents: {{ row.docLicense }}</v-row>
-                <v-row>aadress: {{ row.docArea }}</v-row>
+                <v-row>Kuuluvus: {{ row.docLicense }}</v-row>
+                <v-row>Asukoht: {{ row.docArea }}</v-row>
               </v-card-text>
             </div>
             <br>
@@ -52,7 +52,7 @@
             <v-card-text style="padding-top: 1px">
               <v-row
                   style="font-size: 1em; font-weight: 600; padding-bottom: 5px; padding-top: 5px; margin-left: auto; margin-right: auto; text-align: center">
-                otsusta aeg
+                Millal vajad abi?
               </v-row>
               <br>
               <v-simple-table dense style="border-radius: 10px">

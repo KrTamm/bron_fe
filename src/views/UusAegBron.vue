@@ -6,30 +6,14 @@
     <div
         style="max-width: 500px; margin-left: auto; margin-right: auto; border-radius: 10px; font-size: small">
 
-      <!--      <table style="border: 1px solid black; border-radius: 10px" width="100%">-->
-      <!--        <tr>-->
-      <!--          <th>Kangelane</th>-->
-      <!--          <th>Amet</th>-->
-      <!--          <th>Address</th>-->
-      <!--          <th>Kuupäev</th>-->
-      <!--          <th>Kellaaeg</th>-->
-      <!--        </tr>-->
-      <!--        <tr>-->
-      <!--          <td>{{ doctor.docFirstName }} {{ doctor.docLastName }}</td>-->
-      <!--          <td>{{ doctor.docProfession }}</td>-->
-      <!--          <td>{{ doctor.docArea }}</td>-->
-      <!--          <td>{{ doctor.bookingDate }}</td>-->
-      <!--          <td>{{ doctor.bookingTime }}</td>-->
-      <!--        </tr>-->
-      <!--      </table>-->
-      <h2 style="text-align: center; color: #162CA2">{{ doctor.docFirstName }} {{ doctor.docLastName }}
+      <h2 style="text-align: center; color: #162CA2">{{ doctor.docLastName }}
         <br>{{ formatDate(doctor.bookingDate) }} kell {{ formatTime(doctor.bookingTime) }} <br>Juhised saabuvad
-        emailiga. Ole valmis. </h2>
+        emailiga. Ole valmis! </h2>
       <br>
       <v-text-field
           v-model="userEmail"
           style="font-size: medium"
-          label="Sisesta oma e-mail."
+          label="Sisesta oma e-mail"
           required
       ></v-text-field>
 
@@ -39,7 +23,7 @@
             text
             @click="teeUusAeg(); saadaMeil()"
             style="border: 1px solid; background-color: #EC2004"
-        >Reserveeri Aeg
+        >Broneeri Aeg
         </v-btn>
       </div>
     </div>

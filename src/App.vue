@@ -23,7 +23,7 @@
           <v-btn v-on:click="login" style="background-color: gold">Login</v-btn>
         </div>
         <div v-if="token">
-          {{ user.kasutajaNimi }} sisselogitud
+          {{ user.kasutajaNimi }} Sisselogitud
           <v-btn v-on:click="logout" style="background-color: gold">Logout</v-btn>
           <v-btn style="background-color: gold; margin: 1px">
             <router-link style="text-decoration: none; color: inherit"

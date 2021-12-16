@@ -5,15 +5,10 @@
     <div id="doctorentryform" style="width: 400px; margin-left: auto; margin-right: auto">
       <br>
       <br>
-      <v-text-field
-          v-model="newDoc.docFirstName"
-          label="Eesnimi"
-          required
-      ></v-text-field>
 
       <v-text-field
           v-model="newDoc.docLastName"
-          label="Perenimi"
+          label="Kangelase nimi"
           required
       ></v-text-field>
 
@@ -31,7 +26,7 @@
 
       <v-text-field
           v-model="newDoc.docLicense"
-          label="Litsents"
+          label="Kuuluvus"
           required
       ></v-text-field>
 

@@ -18,7 +18,7 @@
         <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
-            label="Search"
+            label="Otsing"
             single-line
             hide-details
         ></v-text-field>
@@ -32,14 +32,32 @@
           style="background-color: gold"
       >
         <template v-slot:item.controls2="props2">
-          <v-btn @click="deleteButton(props2.item.docId)">
-            <v-icon style="font-size: small">terminate hero</v-icon>
-          </v-btn>
+            <v-btn @click="deleteButton(props2.item.docId)"
+                class="ma-2"
+                color="red"
+                dark>
+              <v-icon
+                  dark
+                  centre
+                  hint="Kustuta kangelane andmebaasist"
+              >
+                mdi-cancel
+              </v-icon>
+            </v-btn>
         </template>
         <template v-slot:item.controls3="props3">
-          <v-btn @click="goToAddDate(props3.item.docId)">
-            <v-icon style="font-size: small">add free timeslot</v-icon>
-          </v-btn>
+            <v-btn @click="goToAddDate(props3.item.docId)"
+                   class="ma-2"
+                   color="green"
+                   dark
+                   hint="Lisa uus aeg kangelasele"
+            >
+              <v-icon
+                  dark
+                  centre>
+                mdi-plus
+              </v-icon>
+            </v-btn>
         </template>
       </v-data-table>
     </v-card>
@@ -57,14 +75,13 @@ export default {
       allDoctors: [],
       search: '',
       headers: [
-        {text: 'Doc ID', value: 'docId'},
-        {text: 'License', value: 'docLicense'},
-        {text: 'Eesnimi', value: 'docFirstName'},
-        {text: 'Perenimi', value: 'docLastName'},
+        {text: 'ID', value: 'docId'},
+        {text: 'Kuuluvus', value: 'docLicense'},
+        {text: 'Kangelane', value: 'docLastName'},
         {text: 'Amet', value: 'docProfession'},
         {text: 'Asukoht', value: 'docArea'},
         {text: 'Vaba aja lisamine', sortable: false, filterable: false, value: 'controls3', align: 'center'},
-        {text: 'Kustutamine', sortable: false, filterable: false, value: 'controls2', align: 'center'},
+        {text: 'Kangelase kustutamine', sortable: false, filterable: false, value: 'controls2', align: 'center'},
       ],
     }
   },

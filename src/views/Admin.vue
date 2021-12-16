@@ -10,22 +10,27 @@
           v-on:click="goToDocBaas()"
           style="background-color: gold"
       >Kangelaste Andmebaas
+      <v-icon
+          dark
+          centre
+      >
+        mdi-ninja
+      </v-icon>
+
       </v-btn>
       <br><br>
-<!--      <v-btn-->
-<!--          elevation="2"-->
-<!--          outlined-->
-<!--          v-on:click="goToNewDate()"-->
-<!--          style="background-color: gold"-->
-<!--      >Lisa uus arstiaeg andmebaasi-->
-<!--      </v-btn>-->
-<!--      <br><br>-->
       <v-btn
           elevation="2"
           outlined
           v-on:click="goToOverall()"
           style="background-color: gold"
       >Vabad ajad ja Broneeringud
+        <v-icon
+            dark
+            centre
+        >
+          mdi-calendar
+        </v-icon>
       </v-btn>
     </div>
 

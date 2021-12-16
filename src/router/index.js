@@ -34,7 +34,7 @@ const routes = [
     component: AddDoc
   },
   {
-    path: 'admin/addDate',
+    path: '/admin/addDate/:id',
     name: 'AddDate',
     component: AddDate
   },

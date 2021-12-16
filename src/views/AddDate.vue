@@ -3,7 +3,7 @@ q
   <div>
     <br>
     <h1 style="text-align: center; color: white">SISESTA VABA AJASLOT</h1>
-    <h1 style="text-align: center; color: white">{{ heroName.docFirstName }} {{ heroName.docLastName }}</h1>
+    <h1 style="text-align: center; color: white">{{ heroName.docLastName }}</h1>
     <div id="doctorentryform" style="width: 400px; margin-left: auto; margin-right: auto"><br><br>
         <v-text-field
             v-model="this.$route.params.id"
@@ -32,6 +32,7 @@ q
                 <v-text-field
                     v-model="newBronTimeADate.bookingDate"
                     label="Kuupäev"
+                    color="white"
                     persistent-hint
                     prepend-icon="mdi-calendar"
                     v-bind="attrs"
@@ -66,6 +67,7 @@ q
               <v-text-field
                   v-model="newBronTimeADate.bookingTime"
                   label="Kellaaeg"
+                  color="white"
                   prepend-icon="mdi-clock-time-four-outline"
                   readonly
                   v-bind="attrs"
