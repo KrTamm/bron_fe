@@ -8,7 +8,7 @@
           v-on:change="getInfoForDocCard"
           v-model="prof"
           v-bind:items="professionList"
-          item-text="docProfession"
+          item-text="docLicense"
           menu-props="auto"
           label="Vali amet"
           hide-details
@@ -164,7 +164,7 @@ export default {
       this.$http.get('api/public/professionList')
           .then(response => {
             this.professionList = response.data
-            this.professionList.unshift({docProfession: 'Kõik kangelased'})
+            this.professionList.unshift({docLicense: 'Kõik kangelased'})
           })
     },
     formatDate(date) {
