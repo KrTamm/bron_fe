@@ -22,7 +22,6 @@ export default {
     playMusic() {
       let audio = new Audio(require('./Avengers.mp3'));
       audio.play();
-      setInterval(this.playMusic,125000);
     }
 
   }

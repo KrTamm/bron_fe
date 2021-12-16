@@ -9,24 +9,28 @@
       <v-text-field
           v-model="newDoc.docLastName"
           label="Kangelase nimi"
+          color="white"
           required
       ></v-text-field>
 
       <v-text-field
           v-model="newDoc.docProfession"
           label="Amet"
+          color="white"
           required
       ></v-text-field>
 
       <v-text-field
           v-model="newDoc.docArea"
           label="Asukoht"
+          color="white"
           required
       ></v-text-field>
 
       <v-text-field
           v-model="newDoc.docLicense"
           label="Kuuluvus"
+          color="white"
           required
       ></v-text-field>
 

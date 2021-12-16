@@ -8,7 +8,7 @@
 
       <h2 style="text-align: center; color: #162CA2">{{ doctor.docLastName }}
         <br>{{ formatDate(doctor.bookingDate) }} kell {{ formatTime(doctor.bookingTime) }} <br>Juhised saabuvad
-        emailiga. Ole valmis! </h2>
+        e-mailiga. Ole valmis! </h2>
       <br>
       <v-text-field
           v-model="userEmail"

@@ -31,10 +31,9 @@
           :items-per-page="15"
           style="background-color: gold"
       >
-        <template v-slot:item.controls2="props2">
+        <template v-slot:item.controls2="props2" >
             <v-btn @click="deleteButton(props2.item.docId)"
                 class="ma-2"
-                color="red"
                 dark>
               <v-icon
                   dark
@@ -48,7 +47,6 @@
         <template v-slot:item.controls3="props3">
             <v-btn @click="goToAddDate(props3.item.docId)"
                    class="ma-2"
-                   color="green"
                    dark
                    hint="Lisa uus aeg kangelasele"
             >
