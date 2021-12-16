@@ -3,93 +3,92 @@ q
   <div>
     <br>
     <h1 style="text-align: center; color: white">SISESTA VABA AJASLOT</h1>
-    <h1 style="text-align: center; color: white">{{heroName.docFirstName}} {{heroName.docLastName}}</h1>
+    <h1 style="text-align: center; color: white">{{ heroName.docFirstName }} {{ heroName.docLastName }}</h1>
     <div id="doctorentryform" style="width: 400px; margin-left: auto; margin-right: auto"><br><br>
+        <v-text-field
+            v-model="this.$route.params.id"
+            label="Kangelase ID"
+            required
+            color="white"
+        ></v-text-field>
 
-      <!--      <h2 class="text-center">Vali arst</h2>-->
-      <div class="text-center">
-        <!--        <v-menu offset-y>-->
-        <!--          <template v-slot:activator="{ on, attrs }">-->
-        <!--            <v-btn-->
-        <!--                color="primary"-->
-        <!--                dark-->
-        <!--                v-bind="attrs"-->
-        <!--                v-on="on"-->
-        <!--            >-->
-        <!--              <v-icon dark>-->
-        <!--                mdi-format-list-bulleted-square-->
-        <!--              </v-icon>-->
-        <!--            </v-btn>-->
-        <!--          </template>-->
-        <!--          <v-list>-->
-        <!--            <v-list-item-->
-        <!--                v-for="(item, index) in items"-->
-        <!--                :key="index"-->
-        <!--            >-->
-        <!--              <v-list-item-title>{{ item.title }}</v-list-item-title>-->
-        <!--            </v-list-item>-->
-        <!--          </v-list>-->
-        <!--        </v-menu>-->
-      </div>
 
-      <!--      <v-container style="text-align: center">-->
-      <!--        <v-row>-->
-      <!--          <v-col-->
-      <!--              cols="12"-->
-      <!--              lg="12"-->
-      <!--          >-->
-      <!--            <v-menu-->
-      <!--                ref="menu1"-->
-      <!--                v-model="menu1"-->
-      <!--                :close-on-content-click="false"-->
-      <!--                transition="scale-transition"-->
-      <!--                offset-y-->
-      <!--                max-width="290px"-->
-      <!--                min-width="auto"-->
-      <!--            >-->
-      <!--              <template v-slot:activator="{ on, attrs }">-->
-      <!--                <v-text-field-->
-      <!--                    v-model="dateFormatted"-->
-      <!--                    label="Date"-->
-      <!--                    hint="MM/DD/YYYY format"-->
-      <!--                    persistent-hint-->
-      <!--                    prepend-icon="mdi-calendar"-->
-      <!--                    v-bind="attrs"-->
-      <!--                    @blur="date = parseDate(dateFormatted)"-->
-      <!--                    v-on="on"-->
-      <!--                ></v-text-field>-->
-      <!--              </template>-->
-      <!--              <v-date-picker-->
-      <!--                  v-model="date"-->
-      <!--                  no-title-->
-      <!--                  @input="menu1 = false"-->
-      <!--                  @click:date="getInfoForDocCard"-->
-      <!--              ></v-date-picker>-->
-      <!--            </v-menu>-->
-      <!--            <strong>Valitud kuupäev: {{ formatDate(date) }}</strong>-->
-      <!--            <br>-->
-      <!--          </v-col>-->
-      <!--        </v-row>-->
-      <!--      </v-container>-->
-<div style="color: white">
-      <v-text-field
-          v-model="this.$route.params.id"
-          label="Kangelase ID"
-          required
-      ></v-text-field>
-      <v-text-field
-          v-model="newBronTimeADate.bookingDate"
-          hint="YYYY-MM-DD format"
-          label="Kuupäev"
-          required
-      ></v-text-field>
-      <v-text-field
-          v-model="newBronTimeADate.bookingTime"
-          hint="HH:MM:SS format"
-          label="Kellaaeg"
-          required
-      ></v-text-field>
-</div>
+
+
+          <v-col
+              cols="12"
+              lg="12"
+          >
+            <v-menu
+                ref="menu1"
+                v-model="menu1"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                max-width="290px"
+                min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                    v-model="newBronTimeADate.bookingDate"
+                    label="Kuupäev"
+                    persistent-hint
+                    prepend-icon="mdi-calendar"
+                    v-bind="attrs"
+                    @blur="newBronTimeADate.bookingDate = parseDate(dateFormatted)"
+                    v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                  v-model="newBronTimeADate.bookingDate"
+                  no-title
+                  @input="menu1 = false"
+              ></v-date-picker>
+            </v-menu>
+          </v-col>
+
+        <v-col
+            cols="12"
+            sm="12"
+        >
+          <v-menu
+              ref="menu"
+              v-model="menu2"
+              :close-on-content-click="false"
+              :nudge-right="40"
+              :return-value.sync="time"
+              transition="scale-transition"
+              offset-y
+              max-width="290px"
+              min-width="290px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                  v-model="newBronTimeADate.bookingTime"
+                  label="Kellaaeg"
+                  prepend-icon="mdi-clock-time-four-outline"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+              ></v-text-field>
+            </template>
+            <v-time-picker
+                v-if="menu2"
+                v-model="newBronTimeADate.bookingTime"
+                full-width
+                @click:minute="$refs.menu.save(time)"
+                format="24hr"
+                class="mt-4"
+                min="9:30"
+                max="19:30"
+                scrollable
+                :allowed-hours="allowedHours"
+                :allowed-minutes="allowedMinutes"
+            ></v-time-picker>
+          </v-menu>
+        </v-col>
+
+
       <v-btn
           block
           elevation="2"
@@ -119,13 +118,13 @@ q
 
 <script>
 export default {
-  data: () => ({
-    items: [
-      {title: 'Click Me'},
-      {title: 'Click Me'},
-      {title: 'Click Me'},
-      {title: 'Click Me 2'},
-    ],
+  data: vm => ({
+    time: null,
+    menu2: false,
+    modal2: false,
+    date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+    dateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
+    menu1: false,
     newBronTimeADate: {},
     docId: '',
     bookingDate: '',
@@ -135,7 +134,33 @@ export default {
     heroName: []
   }),
 
+  computed: {
+    computedDateFormatted () {
+      return this.formatDate(this.date)
+    },
+  },
+
+  watch: {
+    date (val) {
+      this.dateFormatted = this.formatDate(this.date)
+    },
+  },
+
   methods: {
+    allowedHours: v => v === 9 || v === 11 || v === 13 || v === 15 ||  v === 17 ||  v === 19,
+    allowedMinutes: v => v === 30 || v === 0,
+    formatDate (date) {
+      if (!date) return null
+
+      const [year, month, day] = date.split('-')
+      return `${month}/${day}/${year}`
+    },
+    parseDate (date) {
+      if (!date) return null
+
+      const [month, day, year] = date.split('/')
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+    },
     addDateToDatabase: function () {
       this.$http.post('/api/protected/project/createNewBron/' + this.$route.params.id, this.newBronTimeADate)
           .then(response => {
