@@ -16,7 +16,7 @@
       ></v-select>
 
     </v-container>
-    <v-container class="grey lighten-5">
+    <v-container style="background-color: #162CA2">
       <v-row class="justify-center">
         <v-col
             v-for="row in InfoForDocCard"

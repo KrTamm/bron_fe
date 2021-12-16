@@ -54,7 +54,7 @@ const routes = [
     component: UusAegBron
   },
   {
-    path: 'admin/arstidebaas',
+    path: '/admin/arstidebaas',
     name: 'ArstideBaas',
     component: ArstideBaas
   }

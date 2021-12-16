@@ -3,6 +3,7 @@ q
   <div>
     <br>
     <h1 style="text-align: center; color: white">SISESTA VABA AJASLOT</h1>
+    <h1 style="text-align: center; color: white">{{heroName.docFirstName}} {{heroName.docLastName}}</h1>
     <div id="doctorentryform" style="width: 400px; margin-left: auto; margin-right: auto"><br><br>
 
       <!--      <h2 class="text-center">Vali arst</h2>-->
@@ -70,7 +71,7 @@ q
       <!--          </v-col>-->
       <!--        </v-row>-->
       <!--      </v-container>-->
-
+<div style="color: white">
       <v-text-field
           v-model="this.$route.params.id"
           label="Kangelase ID"
@@ -88,7 +89,7 @@ q
           label="Kellaaeg"
           required
       ></v-text-field>
-
+</div>
       <v-btn
           block
           elevation="2"
@@ -131,6 +132,7 @@ export default {
     bookingTime: '',
     bronAdd: {},
     show: false,
+    heroName: []
   }),
 
   methods: {
@@ -145,5 +147,9 @@ export default {
       this.show = false
     },
   },
+  mounted() {
+    this.$http.get('/api/public/heroDetails/' + this.$route.params.id)
+        .then(response => this.heroName = response.data)
+  }
 }
 </script>
