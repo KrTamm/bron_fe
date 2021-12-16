@@ -24,7 +24,6 @@
         <template v-slot:item.controls="props">
           <v-btn v-if="props.item.userEmail" @click="cancelButton(props.item.bookingId)"
                  class="ma-2"
-                 color="red"
                  dark
                  hint="Lisa uus aeg kangelasele"
           >
