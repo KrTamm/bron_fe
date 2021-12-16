@@ -8,7 +8,7 @@
       <v-container style="text-align: left">
       <div id="nav">
 
-        <router-link to="/" style="text-decoration: none; color: inherit;">
+        <router-link to="/broneerimine" style="text-decoration: none; color: inherit;">
           <div  id="pealkiri" style="color: white; font-family: Marvel;font-size: xx-large">
             KANGELASED.ee
           </div>
