@@ -23,7 +23,7 @@
           <v-btn v-on:click="login" style="background-color: gold">Login</v-btn>
         </div>
         <div v-if="token">
-          admin sisselogitud
+          {{ user.kasutajaNimi }} sisselogitud
           <v-btn v-on:click="logout" style="background-color: gold">Logout</v-btn>
           <v-btn style="background-color: gold; margin: 1px">
             <router-link style="text-decoration: none; color: inherit"
@@ -64,7 +64,7 @@ export default {
             localStorage.setItem(('user-token'), this.token)
             this.$http.defaults.headers.common['Authorization'] = "Bearer " + this.token
             router.push({name: 'Admin'})
-            location.reload();
+            // location.reload();
           })
 
 

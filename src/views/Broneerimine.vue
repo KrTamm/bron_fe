@@ -42,7 +42,7 @@
                   {{ row.docFirstName }} {{ row.docLastName }}
                 </v-row>
                 <v-row>{{ row.docProfession }}</v-row>
-                <v-row>litsentsi nr: {{ row.docLicense }}</v-row>
+                <v-row>litsents: {{ row.docLicense }}</v-row>
                 <v-row>aadress: {{ row.docArea }}</v-row>
               </v-card-text>
             </div>
