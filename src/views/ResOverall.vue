@@ -48,8 +48,8 @@ export default {
       headers: [
         {text: 'Booking ID', align: 'start', filterable: false, value: 'bookingId'},
         {text: 'Doc ID', value: 'docId'},
-        {text: 'Arsti nimi', value: 'docLastName'},
-        {text: 'Patsiendi email', value: 'userEmail'},
+        {text: 'Kangelane', value: 'docLastName'},
+        {text: 'Kliendi email', value: 'userEmail'},
         {text: 'Bron kuupäev', value: 'bookingDate'},
         {text: 'Bron kellaaaeg', value: 'bookingTime'},
         {text: 'Tühistamine', sortable: false, filterable: false, value: 'controls', align: 'center'},
