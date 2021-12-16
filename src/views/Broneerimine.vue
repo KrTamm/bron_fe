@@ -73,13 +73,10 @@
                       {{ formatDate(rida.date) }}
                     </td>
                     <td>
-
                       <v-chip-group
                           v-model="rida.selection"
-                          active-class="deep-purple accent-4 white--text"
-                          column
-                      >
-                        <v-chip v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)"
+                          column>
+                        <v-chip id="porgand" v-for="time in rida.timeList" @click="goToNewBron(time.bookingId)"
                                 style="background-color: gold">
                           {{ formatTime(time.bookingTime) }}
                         </v-chip>
@@ -192,3 +189,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+#porgand:hover {
+  background-color: #EC2004 !important;
+}
+</style>
