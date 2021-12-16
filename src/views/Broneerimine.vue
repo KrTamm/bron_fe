@@ -16,7 +16,7 @@
       ></v-select>
 
     </v-container>
-    <v-container class="grey lighten-5">
+    <v-container style="background-color: #162CA2">
       <v-row class="justify-center">
         <v-col
             v-for="row in InfoForDocCard"
@@ -52,7 +52,7 @@
             <v-card-text style="padding-top: 1px">
               <v-row
                   style="font-size: 1em; font-weight: 600; padding-bottom: 5px; padding-top: 5px; margin-left: auto; margin-right: auto; text-align: center">
-                vali aeg
+                otsusta aeg
               </v-row>
               <br>
               <v-simple-table dense style="border-radius: 10px">

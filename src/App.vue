@@ -10,7 +10,7 @@
 
         <router-link to="/" style="text-decoration: none; color: inherit;">
           <div  id="pealkiri" style="color: white; font-family: Marvel;font-size: xx-large">
-            SINUKANGELASED.ee
+            KANGELASED.ee
           </div>
         </router-link>
       </div>
