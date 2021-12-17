@@ -67,6 +67,7 @@ export default {
         {text: 'Kliendi e-mail', value: 'userEmail'},
         {text: 'Bron kuupäev', value: 'bookingDate'},
         {text: 'Bron kellaaeg', value: 'bookingTime'},
+        {text: 'Probleemi kirjeldus', value: 'kirjeldus'},
         {text: 'Tühista aeg', sortable: false, filterable: false, value: 'controls', align: 'center'},
         {text: 'Kustuta aeg', sortable: false, filterable: false, value: 'controls2', align: 'center'},
       ],

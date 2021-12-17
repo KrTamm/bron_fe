@@ -15,7 +15,18 @@
           style="font-size: medium"
           label="Sisesta oma e-mail"
           required
-      ></v-text-field>
+      ></v-text-field><br>
+
+      <v-container fluid>
+        <v-textarea
+            name="input-7-1"
+            filled
+            label="Kirjelda lühidalt oma probleemi"
+            auto-grow
+            v-model="kirjeldus"
+            required
+        ></v-textarea>
+      </v-container>
 
       <div style="text-align: center">
         <v-btn
@@ -40,13 +51,15 @@ export default {
     id: "",
     userEmail: "",
     doctor: [],
+    kirjeldus: ""
   }),
 
 
   methods: {
     teeUusAeg() {
       let body = {
-        "userEmail": this.userEmail
+        "userEmail": this.userEmail,
+        "kirjeldus": this.kirjeldus
       }
       this.$http.put("api/public/project/makeBron/" + this.$route.params.id, body)
           .then(response => {
