@@ -1,7 +1,6 @@
 <template>
   <div class="broneerimine" style="text-align: center">
     <br>
-
     <br>
     <v-btn @click="playMusic(); goToNextPage()"
     loop="loop">

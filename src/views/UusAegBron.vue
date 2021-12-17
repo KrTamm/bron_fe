@@ -15,7 +15,8 @@
           style="font-size: medium"
           label="Sisesta oma e-mail"
           required
-      ></v-text-field><br>
+      ></v-text-field>
+      <br>
 
       <v-container fluid>
         <v-textarea
@@ -54,7 +55,6 @@ export default {
     kirjeldus: ""
   }),
 
-
   methods: {
     teeUusAeg() {
       let body = {
@@ -75,14 +75,12 @@ export default {
     formatDate(date) {
       if (!date) return null
       const [year, month, day] = date.split('-')
-      // return `${month}/${day}/${year}`
       return `${day}.${month}.${year}`
     },
 
     formatTime(time) {
       if (!time) return null
-      const [hour, minute, second] = time.split(':')
-      // return `${month}/${day}/${year}`
+      const [hour, minute] = time.split(':')
       return `${hour}:${minute}`
     }
   },

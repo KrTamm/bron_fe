@@ -34,7 +34,6 @@
       </v-btn>
     </div>
 
-
   </div>
 </template>
 
@@ -59,10 +58,6 @@ export default {
   }),
 
   methods: {
-
-    goToNewDate: function () {
-      router.push({name: 'AddDate'});
-    },
     goToOverall: function () {
       router.push({name: 'ResOverall'});
     },

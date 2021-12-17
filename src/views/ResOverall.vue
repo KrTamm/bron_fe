@@ -22,7 +22,7 @@
           style="background-color: gold"
       >
         <template v-slot:item.controls="props">
-          <v-btn v-if="props.item.userEmail" @click="cancelButton(props.item.bookingId)"
+          <v-btn v-if="props.item.userEmail || props.item.kirjeldus" @click="cancelButton(props.item.bookingId)"
                  class="ma-2"
                  dark
                  hint="Lisa uus aeg kangelasele"
@@ -50,7 +50,6 @@
     </v-card>
   </div>
 </template>
-
 
 <script>
 export default {

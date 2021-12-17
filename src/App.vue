@@ -6,14 +6,14 @@
     >
 
       <v-container style="text-align: left">
-      <div id="nav">
+        <div id="nav">
 
-        <router-link to="/broneerimine" style="text-decoration: none; color: inherit;">
-          <div  id="pealkiri" style="color: white; font-family: Marvel;font-size: xx-large">
-            KANGELASED.ee
-          </div>
-        </router-link>
-      </div>
+          <router-link to="/broneerimine" style="text-decoration: none; color: inherit;">
+            <div id="pealkiri" style="color: white; font-family: Marvel;font-size: xx-large">
+              KANGELASED.ee
+            </div>
+          </router-link>
+        </div>
       </v-container>
 
       <v-container style="text-align: right; padding: 0px; margin: 0px">
@@ -27,11 +27,11 @@
           <v-btn v-on:click="logout" style="background-color: gold">Logout</v-btn>
           <v-btn style="background-color: gold; margin: 1px">
             <router-link style="text-decoration: none; color: inherit"
-                         to="/admin" >Admin</router-link>
+                         to="/admin">Admin
+            </router-link>
           </v-btn>
         </div>
       </v-container>
-
 
     </v-app-bar>
 
@@ -81,7 +81,6 @@ export default {
       localStorage.removeItem('user-token');
       alert("You have been logged out")
       router.push({name: 'Broneerimine'})
-      // location.reload();
     }
   },
   mounted() {
@@ -96,10 +95,10 @@ export default {
   src: local("Marvel"),
   url(./assets/marvel2.otf) format("truetype");
 }
+
 * {
   font-family: Verdana;
   font-weight: lighter;
-  /*letter-spacing: 2px;*/
 }
 
 #nav {
