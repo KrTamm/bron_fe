@@ -3,7 +3,7 @@
     <br>
     <h1 style="text-align: center; color: white">VABADE AEGADE JA BRONNIDE HALDUS</h1>
     <br>
-    <v-card style="max-width: 1200px;margin-left: auto; margin-right: auto; background-color: gold">
+    <v-card style="max-width: 1250px;margin-left: auto; margin-right: auto; background-color: gold">
       <v-card-title>
         <v-text-field
             v-model="search"
